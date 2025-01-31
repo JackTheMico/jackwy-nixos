@@ -211,8 +211,8 @@
       desktopManager.gnome.enable = true;
       xkb = {
         layout = "us";
+      	options = [ "ctrl:swapcaps" ];
       };
-      xkbOptions = [ "ctrl:swapcaps" ];
     };
   };
 
