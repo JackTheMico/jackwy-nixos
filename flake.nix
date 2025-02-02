@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "Jack Wenyoung's nixos configuration";
 
   inputs = {
     # Nixpkgs
@@ -10,7 +10,7 @@
     # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
 
     # Home manager
-    home-manager.url = "github:nix-community/home-manager/release-23.11";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -58,6 +58,15 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/laptop/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.users.${userName} = import ./home-manager/home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+            home-manager.extraSpecialArgs = {inherit inputs outputs userName;};
+          }
         ];
       };
     };

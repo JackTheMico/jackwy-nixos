@@ -1,221 +1,181 @@
-# This is your system's configuration file.
-# Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page, on
+# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
-  inputs,
-  outputs,
-  userName,
-  lib,
   config,
+  lib,
+  outputs,
   pkgs,
+  userName,
   ...
 }: {
-  # You can import other NixOS modules here
   imports = [
-    # If you want to use modules your own flake exports (from modules/nixos):
-    # outputs.nixosModules.example
-
-    # Or modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
-
-    # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
-
-    # Import your generated (nixos-generate-config) hardware configuration
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    outputs.nixosModules.jujutsu
   ];
 
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [
-      # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-      # You can also add overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
-    ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
+  # networking.hostName = "nixos"; # Define your hostname.
+  # Pick only one of the below networking options.
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking = {
+    hostName = "nixos-jackwy-laptop";
+    wireless = {
+      enable = false;
+    };
+    networkmanager = {
+      enable = true;
     };
   };
-
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      # Enable flakes and new 'nix' command
-      experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
-      flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
-      nix-path = config.nix.nixPath;
-    };
-    # Opinionated: disable channels
-    channel.enable = false;
-
-    # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
-
-  # NOTE: Add the rest of your current configuration
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    cachix
-    wget
-    git
-    clash-verge-rev
-    hyprland
-    libnotify
-    nh
-  ];
-
-  programs = {
-    nh = {
-      enable = true;
-      clean.enable = true;
-      clean.extraArgs = "--keep-since 5d --keep 5";
-      flake = "/home/jackwenyoung/codes/jackwy/jackwy-nixos";
-    };
-    
-    # Install firefox.
-    firefox.enable = true;
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    gnupg.agent = {
-      enable = true;
-      settings = {
-        default-cache-ttl = 86400;
-      };
-      enableSSHSupport = true;
-    };
-    # Install hyprland
-    hyprland.enable = true;
-    clash-verge = {
-      package = pkgs.clash-verge-rev;
-      enable = true;
-      autoStart = true;
-      tunMode = true;
-    };
-  };
-  
-
-  environment.variables.EDITOR = "nixCats";
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
-  # NOTE: Set your hostname
-  networking.hostName = "nixos-jackwy-laptop";
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # Allow unfree
+  nixpkgs.config.allowUnfree = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking
-  networking.networkmanager.enable = true;
-
+  # Select internationalisation properties.
   i18n = {
-    defaultLocale = "zh_CN.UTF-8";
-    extraLocaleSettings = {
-      LC_ADDRESS = "zh_CN.UTF-8";
-      LC_IDENTIFICATION = "zh_CN.UTF-8";
-      LC_MEASUREMENT = "zh_CN.UTF-8";
-      LC_MONETARY = "zh_CN.UTF-8";
-      LC_NAME = "zh_CN.UTF-8";
-      LC_NUMERIC = "zh_CN.UTF-8";
-      LC_PAPER = "zh_CN.UTF-8";
-      LC_TELEPHONE = "zh_CN.UTF-8";
-      LC_TIME = "zh_CN.UTF-8";
-    };
-    inputMethod = {
-      type = "fcitx5";
-      enable = true;
-      fcitx5.addons = with pkgs; [
-        rime-data
-        librime
-        fcitx5-chinese-addons
-      ];
-    };
+    defaultLocale = "en_US.UTF-8";
+  };
+  # console = {
+  #   font = "Lat2-Terminus16";
+  #   keyMap = "us";
+  #   useXkbConfig = true; # use xkb.options in tty.
+  # };
+
+  # Enable the X11 windowing system.
+  # services.xserver.enable = true;
+
+  # Configure keymap in X11
+  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.options = "eurosign:e,ctrl:swapcaps";
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound.
+  # hardware.pulseaudio.enable = true;
+  # OR
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
   };
 
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
 
-  # NOTE: Configure your system-wide user settings (groups, etc), add more users as needed.
-  users.users = {
-    # NOTE: Replace with your username
-    ${userName} = {
-      # NOTE: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      # initialPassword = "correcthorsebatterystaple";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # NOTE: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      # NOTE: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = [ "networkmanager" "wheel" ];
-    };
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.users.jackwenyoung = {
+    isNormalUser = true;
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      clash-verge-rev
+    ];
   };
 
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services = {
-    pipewire = {
+  programs = {
+    clash-verge = {
       enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      # If you want to use JACK applications, uncomment this
-      #jack.enable = true;
-
-      # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
-      #media-session.enable = true;
+      package = pkgs.clash-verge-rev;
+      tunMode = true;
+      autoStart = true;
     };
-    printing.enable = true;
-    openssh = {
+    nh = {
       enable = true;
-      settings = {
-        # Opinionated: forbid root login through SSH.
-        PermitRootLogin = "no";
-        # Opinionated: use keys only.
-        # Remove if you want to SSH using passwords
-        PasswordAuthentication = false;
+      flake = "/home/${userName}/codes/jackwy/jackwy-nixos";
+      clean = {
+        enable = true;
+        extraArgs = "--keep 5 --keep-since 3d";
       };
     };
-    xserver = {
-      # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-      xkb = {
-        layout = "us";
-      	options = [ "ctrl:swapcaps" ];
-      };
+    firefox.enable = true;
+    uwsm.enable = true;
+    mtr.enable = true;
+    hyprlock.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
     };
   };
 
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.11";
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    age
+    sops
+    brightnessctl
+    ungoogled-chromium
+    neovim
+    waybar
+    wget
+    git
+    fd
+    wofi
+    ripgrep
+    bash
+    kitty
+  ];
+
+  # Enable Flakes
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # Storage Optimization
+  nix.optimise.automatic = true;
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
+
+  # List services that you want to enable:
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  # Or disable the firewall altogether.
+  networking.firewall.enable = false;
+
+  # Copy the NixOS configuration file and link it from the resulting system
+  # (/run/current-system/configuration.nix). This is useful in case you
+  # accidentally delete configuration.nix.
+  # system.copySystemConfiguration = true;
+
+  # This option defines the first version of NixOS you have installed on this particular machine,
+  # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
+  #
+  # Most users should NEVER change this value after the initial install, for any reason,
+  # even if you've upgraded your system to a new NixOS release.
+  #
+  # This value does NOT affect the Nixpkgs version your packages and OS are pulled from,
+  # so changing it will NOT upgrade your system - see https://nixos.org/manual/nixos/stable/#sec-upgrading for how
+  # to actually do that.
+  #
+  # This value being lower than the current NixOS release does NOT mean your system is
+  # out of date, out of support, or vulnerable.
+  #
+  # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
+  # and migrated your data accordingly.
+  #
+  # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
