@@ -4,6 +4,8 @@
   inputs,
   outputs,
   userName,
+  gitName,
+  gitEmail,
   lib,
   config,
   pkgs,
@@ -61,6 +63,7 @@
     fish
     eza
     grc
+    gh
     ghostty
     neofetch
     nvd
@@ -68,7 +71,7 @@
     starship
     tmux
     fzf
-    ungoogled-chromium
+    chromium
     (nerdfonts.override {fonts = ["Hack"];})
     yazi
     lazygit
@@ -91,15 +94,37 @@
         fi
       '';
     };
+    gh = {
+      enable = true;
+      extensions = with pkgs;[
+        gh-dash
+	gh-eco
+	gh-f
+        gh-markdown-preview
+      ];
+    };
     git = {
       enable = true;
-      userName = "Jack Wenyoung";
-      userEmail = "dlwxxxdlw@gmail.com";
+      userName = gitName;
+      userEmail = gitEmail;
       extraConfig = {
         http.proxy = "http://127.0.0.1:7897";
         https.proxy = "http://127.0.0.1:7897";
 	commit.gpgsign = true;
 	user.signingkey = "A30DF874D95E6029";
+      };
+    };
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+	  name = gitName;
+	  email = gitEmail;
+	};
+	ui = {
+	  paginate = "never";
+	  editor = "nixCats";
+	};
       };
     };
     starship = {
@@ -108,7 +133,7 @@
     fish = {
       enable = true;
       loginShellInit = ''
-               starship init fish | source
+        starship init fish | source
         thefuck --alias | source
       '';
       plugins = [
@@ -133,6 +158,7 @@
         la = "eza -l -a";
         lt = "eza -T";
         lg = "lazygit";
+	lj = "lazyjj";
       };
     };
     zoxide = {

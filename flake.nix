@@ -30,6 +30,8 @@
       "x86_64-darwin"
     ];
     userName = "jackwenyoung";
+    gitName = "Jack Wenyoung";
+    gitEmail = "dlwxxxdlw@gmail.com";
     # This is a function that generates an attribute by calling a function you
     # pass to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -54,7 +56,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       nixos-jackwy-laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs userName;};
+        specialArgs = {inherit inputs outputs userName gitName gitEmail;};
         modules = [
           # > Our main nixos configuration file <
           ./hosts/laptop/configuration.nix
@@ -76,7 +78,7 @@
     homeConfigurations = {
       "${userName}@nixos-jackwy-laptop" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs userName;};
+        extraSpecialArgs = {inherit inputs outputs userName gitName gitEmail;};
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/home.nix
