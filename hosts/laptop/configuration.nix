@@ -31,6 +31,7 @@
     networkmanager = {
       enable = true;
     };
+    extraHosts = "104.244.46.244 stable.dl2.discordapp.net";
   };
 
   # Set your time zone.
