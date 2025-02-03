@@ -64,7 +64,7 @@
     bat
     bash
     chezmoi
-    # discord # Might need to change nixos store source
+    discord # Might need to change nixos store source
     discordo
     fish
     eza

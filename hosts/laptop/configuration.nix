@@ -134,6 +134,7 @@
     neovim
     waybar
     wget
+    wl-clipboard
     git
     fd
     wofi
