@@ -53,6 +53,9 @@
   home = {
     username = userName;
     homeDirectory = "/home/${userName}";
+    sessionVariables = {
+      EDITOR = "nixCats";
+    };
   };
 
   # Add stuff for your user as you see fit:
@@ -91,6 +94,7 @@
     bash = {
       enable = true;
       enableCompletion = true;
+      # Enter fish shell
       initExtra = ''
         if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
         then
@@ -98,12 +102,21 @@
           exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
         fi
       '';
+      # Start Hyprland after login
       profileExtra = ''
         if uwsm check may-start; then
 	    exec systemd-cat -t uwsm_start uwsm start default
         fi
       '';
     };
+    firefox.profiles.${userName}.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      swithyomega
+      tampermonkey
+      darkreader
+      tree-style-tab
+      immersive-translate
+      #NOTE: Install Toby manually.
+    ];
     gh = {
       enable = true;
       extensions = with pkgs;[
