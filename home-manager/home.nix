@@ -88,6 +88,13 @@
     bash = {
       enable = true;
       enableCompletion = true;
+      interactiveShellInit = ''
+        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+        then
+          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+        fi
+      '';
       profileExtra = ''
         if uwsm check may-start; then
 	    exec systemd-cat -t uwsm_start uwsm start default
@@ -132,7 +139,7 @@
     };
     fish = {
       enable = true;
-      loginShellInit = ''
+      ShellInit = ''
         starship init fish | source
         thefuck --alias | source
 	COMPLETE=fish jj | source
