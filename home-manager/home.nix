@@ -161,6 +161,12 @@
 	lj = "lazyjj";
       };
     };
+    yazi = {
+      enable = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
+    };
     zoxide = {
       enable = true;
       enableBashIntegration = true;
