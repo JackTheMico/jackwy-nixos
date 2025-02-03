@@ -60,6 +60,7 @@
   home.packages = with pkgs; [
     bat
     bash
+    chezmoi
     # discord # Might need to change nixos store source
     # discordo
     fish
