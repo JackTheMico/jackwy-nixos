@@ -64,7 +64,7 @@
           {
             home-manager.useUserPackages = true;
             home-manager.users.${userName} = import ./home-manager/home.nix;
-	    home-manager.backFileExtension = "backup";
+	    home-manager.backupFileExtension = "backup";
 
             # Optionally, use home-manager.extraSpecialArgs to pass
             # arguments to home.nix
