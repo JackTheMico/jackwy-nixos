@@ -135,6 +135,7 @@
       loginShellInit = ''
         starship init fish | source
         thefuck --alias | source
+	COMPLETE=fish jj | source
       '';
       plugins = [
         {
