@@ -53,7 +53,6 @@
   home = {
     username = userName;
     homeDirectory = "/home/${userName}";
-    backupFileExtension = "backup";
   };
 
   # Add stuff for your user as you see fit:
