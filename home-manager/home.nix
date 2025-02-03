@@ -60,6 +60,8 @@
   home.packages = with pkgs; [
     bat
     bash
+    discord
+    discordo
     fish
     eza
     grc
