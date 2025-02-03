@@ -25,13 +25,14 @@
   # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
   networking = {
     hostName = "nixos-jackwy-laptop";
+    proxy.default = "http://127.0.0.1:7897";
+    proxy.noProxy = "127.0.0.1,localhost,.localdomain";
     wireless = {
       enable = false;
     };
     networkmanager = {
       enable = true;
     };
-    extraHosts = "104.244.46.244 stable.dl2.discordapp.net";
   };
 
   # Set your time zone.
