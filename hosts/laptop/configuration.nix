@@ -46,6 +46,16 @@
   # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
+    inputMethod = {
+      type = "fcitx5";
+      fcitx5 = {
+        waylandFrontend = true;
+        addons = with pkgs; [
+      	  fcitx5-chinese-addons  # table input method support
+      	  fcitx5-nord            # a color theme
+      	];
+      };
+   };
   };
   # console = {
   #   font = "Lat2-Terminus16";

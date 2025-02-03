@@ -60,8 +60,8 @@
   home.packages = with pkgs; [
     bat
     bash
-    discord
-    discordo
+    # discord # Might need to change nixos store source
+    # discordo
     fish
     eza
     grc
@@ -133,6 +133,7 @@
 	ui = {
 	  paginate = "never";
 	  editor = "nixCats";
+	  default-command = "log";
 	};
       };
     };
