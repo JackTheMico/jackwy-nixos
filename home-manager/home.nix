@@ -139,10 +139,10 @@
     };
     fish = {
       enable = true;
-      ShellInit = ''
+      interactiveShellInit = ''
         starship init fish | source
         thefuck --alias | source
-	COMPLETE=fish jj | source
+	jj util completion fish | source
       '';
       plugins = [
         {
