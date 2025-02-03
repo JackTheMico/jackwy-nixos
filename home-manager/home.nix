@@ -65,6 +65,7 @@
     bash
     chezmoi
     discord # Might need to change nixos store source
+    delta
     fish
     eza
     grc
@@ -144,9 +145,11 @@
 	  email = gitEmail;
 	};
 	ui = {
-	  paginate = "never";
+	  paginate = "auto";
+	  pager = "delta";
 	  editor = "nixCats";
 	  default-command = "log";
+	  diff.format = "git";
 	};
       };
     };
