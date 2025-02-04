@@ -187,6 +187,7 @@
         lt = "eza -T";
         lg = "lazygit";
 	lj = "lazyjj";
+	md = "mkdir";
       };
     };
     yazi = {

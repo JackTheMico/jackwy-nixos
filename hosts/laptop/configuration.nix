@@ -101,6 +101,8 @@
     brightnessctl
     just
     neovim
+    nautilus
+    nautilus-open-any-terminal
     waybar
     wget
     wl-clipboard
@@ -159,6 +161,12 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # NOTE: https://discourse.nixos.org/t/how-to-automatically-mount-external-hard-drive/15563/2
+  # Try to automatically mount external hard drive
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
