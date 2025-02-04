@@ -150,6 +150,7 @@
 	  editor = "nixCats";
 	  default-command = "log";
 	  diff.format = "git";
+	  allow-init-native = true;
 	};
       };
     };
