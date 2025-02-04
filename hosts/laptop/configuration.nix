@@ -91,10 +91,27 @@
   users.users.jackwenyoung = {
     isNormalUser = true;
     extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      clash-verge-rev
-    ];
   };
+
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    age
+    clash-verge-rev
+    brightnessctl
+    just
+    neovim
+    waybar
+    wget
+    wl-clipboard
+    git
+    fd
+    sops
+    wofi
+    ripgrep
+    bash
+    kitty
+  ];
 
   programs = {
     clash-verge = {
@@ -124,26 +141,6 @@
       enableSSHSupport = true;
     };
   };
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    age
-    sops
-    brightnessctl
-    ungoogled-chromium
-    neovim
-    waybar
-    wget
-    wl-clipboard
-    git
-    fd
-    wofi
-    ripgrep
-    bash
-    kitty
-  ];
-
   # Enable Flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
