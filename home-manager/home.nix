@@ -17,6 +17,9 @@
     # outputs.homeManagerModules.example
     outputs.homeManagerModules.obsidian
 
+    # Sops home-manager module
+    inputs.sops-nix.homeManagerModules.sops
+
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 

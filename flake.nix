@@ -3,6 +3,10 @@
 
   inputs = {
     # Nixpkgs
+    sops-nix.url = "github:Mic92/sops-nix";
+    # optional, not necessary for the module
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
@@ -22,6 +26,7 @@
     self,
     nixpkgs,
     home-manager,
+    sops-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -64,6 +69,7 @@
         modules = [
           # > Our main nixos configuration file <
           ./hosts/laptop/configuration.nix
+	  sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager
           {
             home-manager.useUserPackages = true;
