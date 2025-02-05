@@ -81,7 +81,6 @@
     tmux
     fzf
     chromium
-    (nerdfonts.override {fonts = ["Hack"];})
     yazi
     lazygit
     thefuck

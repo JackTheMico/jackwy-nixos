@@ -13,6 +13,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     outputs.nixosModules.jujutsu
+    outputs.nixosModules.fonts
   ];
 
   # Use the systemd-boot EFI boot loader.
