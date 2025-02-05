@@ -67,6 +67,7 @@
     bat
     bash
     chezmoi
+    chromium
     discord # Might need to change nixos store source
     delta
     fish
@@ -80,10 +81,10 @@
     starship
     tmux
     fzf
-    chromium
     yazi
     lazygit
     thefuck
+    qutebrowser-qt5
     wezterm
     zoxide
   ];
@@ -154,6 +155,15 @@
 	  diff.format = "git";
 	  allow-init-native = true;
 	};
+      };
+    };
+    kitty = {
+      enable = true;
+      font.name = "Hack";
+      settings = {
+        scrollback_lines = 10000;
+        enable_audio_bell = false;
+        update_check_interval = 0;
       };
     };
     starship = {
