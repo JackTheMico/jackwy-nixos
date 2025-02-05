@@ -90,6 +90,11 @@
   ];
 
   fonts.fontconfig.enable = true;
+  wayland.windowManager.hyprland.settings = {
+    input = {
+      kb_options = "ctrl:nocaps";
+    };
+  };
 
   # Enable home-manager and git
   programs = {
