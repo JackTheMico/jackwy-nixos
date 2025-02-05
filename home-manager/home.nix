@@ -84,7 +84,7 @@
     yazi
     lazygit
     thefuck
-    qutebrowser-qt5
+    qutebrowser
     wezterm
     zoxide
   ];
