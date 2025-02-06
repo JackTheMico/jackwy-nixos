@@ -16,7 +16,7 @@
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     outputs.homeManagerModules.obsidian
-    (import outputs.homeManagerModules.hyprland {monitor = outputs.monitor; gpucard = outputs.gpucard;})
+    outputs.homeManagerModules.hyprland
 
     # Sops home-manager module
     inputs.sops-nix.homeManagerModules.sops
