@@ -90,9 +90,12 @@
   ];
 
   fonts.fontconfig.enable = true;
-  wayland.windowManager.hyprland.settings = {
-    input = {
-      kb_options = "ctrl:nocaps";
+  wayland.windowManager.hyprland = {
+    enable = true;
+    settings = {
+      input = {
+        kb_options = "ctrl:nocaps";
+      };
     };
   };
 
@@ -110,12 +113,12 @@
           exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
         fi
       '';
-      # Start Hyprland after login
-      profileExtra = ''
-        if uwsm check may-start; then
-	    exec systemd-cat -t uwsm_start uwsm start default
-        fi
-      '';
+      # NOTE: Start Hyprland after login
+     #  profileExtra = ''
+     #    if uwsm check may-start; then
+	    # exec systemd-cat -t uwsm_start uwsm start default
+     #    fi
+     #  '';
     };
     firefox.profiles.${userName}.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       swithyomega
