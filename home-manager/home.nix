@@ -208,6 +208,8 @@
         lg = "lazygit";
 	lj = "lazyjj";
 	md = "mkdir";
+	jjbm = "jj bookmark s -r @- main";
+	gpom = "git push -u origin main";
       };
     };
     yazi = {
