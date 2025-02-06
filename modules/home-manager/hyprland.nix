@@ -1,28 +1,15 @@
 {...}: {
   wayland.windowManager.hyprland = {
     enable = true;
-    # extraConfig = ''
-    #   # Laptop multimedia keys for volume and LCD brightness
-    #   bindel = ,XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-    #   bindel = ,XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-    #   bindel = ,XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-    #   bindel = ,XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-    #   bindel = ,XF86MonBrightnessUp, exec, brightnessctl s 10%+
-    #   bindel = ,XF86MonBrightnessDown, exec, brightnessctl s 10%-
-    #   # Requires playerctl
-    #   bindl = , XF86AudioNext, exec, playerctl next
-    #   bindl = , XF86AudioPause, exec, playerctl play-pause
-    #   bindl = , XF86AudioPlay, exec, playerctl play-pause
-    #   bindl = , XF86AudioPrev, exec, playerctl previous
-    # '';
     settings = {
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
       "$menu" = "wofi --show drun";
       "$mod" = "SUPER";
+      exec-once = "waybar &";
       general = {
-        gaps_in = 5;
-        gaps_out = 20;
+        gaps_in = 3;
+        gaps_out = 16;
 
         border_size = 2;
 

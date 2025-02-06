@@ -107,11 +107,11 @@
         fi
       '';
       # NOTE: Start Hyprland after login
-     #  profileExtra = ''
-     #    if uwsm check may-start; then
-	    # exec systemd-cat -t uwsm_start uwsm start default
-     #    fi
-     #  '';
+      profileExtra = ''
+        if uwsm check may-start; then
+	    exec systemd-cat -t uwsm_start uwsm start default
+        fi
+      '';
     };
     firefox.profiles.${userName}.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       swithyomega

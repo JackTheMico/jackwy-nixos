@@ -100,16 +100,18 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     age
-    clash-verge-rev
     brightnessctl
+    clash-verge-rev
+    dunst
+    swww # wallpaper
+    fd
+    git
     just
     nautilus
     nautilus-open-any-terminal
     waybar
     wget
     wl-clipboard
-    git
-    fd
     sops
     wofi
     ripgrep
