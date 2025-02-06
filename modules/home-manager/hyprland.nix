@@ -156,7 +156,7 @@
       input = {
         kb_layout = "us";
         follow_mouse = 1;
-        kb_options = "ctrl:nocaps";
+        kb_options = "ctrl:swapcaps";
         # touchpad = {
         #   natural_scoll = true;
         # };
