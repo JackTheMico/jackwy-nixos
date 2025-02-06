@@ -3,4 +3,5 @@
 {
   # List your module files here
   obsidian = import ./obsidian.nix;
+  hyprland = import ./hyprland.nix;
 }

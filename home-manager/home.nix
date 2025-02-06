@@ -16,6 +16,7 @@
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     outputs.homeManagerModules.obsidian
+    (import outputs.homeManagerModules.hyprland {monitor = outputs.monitor; gpucard = outputs.gpucard;})
 
     # Sops home-manager module
     inputs.sops-nix.homeManagerModules.sops
@@ -90,14 +91,6 @@
   ];
 
   fonts.fontconfig.enable = true;
-  wayland.windowManager.hyprland = {
-    enable = true;
-    settings = {
-      input = {
-        kb_options = "ctrl:nocaps";
-      };
-    };
-  };
 
   # Enable home-manager and git
   programs = {

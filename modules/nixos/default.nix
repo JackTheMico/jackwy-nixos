@@ -5,4 +5,5 @@
   # my-module = import ./my-module.nix;
   jujutsu = import ./jujutsu.nix;
   fonts = import ./fonts.nix;
+  network = import ./network.nix;
 }

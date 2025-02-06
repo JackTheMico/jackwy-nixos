@@ -9,11 +9,16 @@
   userName,
   ...
 }: {
+  # hyprland parameters
+  outputs.monitor = "eDP-1, 1920x1080@60, 0x0, 1";
+  outputs.gpucard = "/dev/dri/card1";
+
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     outputs.nixosModules.jujutsu
     outputs.nixosModules.fonts
+    outputs.nixosModules.network
   ];
 
   # Use the systemd-boot EFI boot loader.
@@ -101,7 +106,6 @@
     clash-verge-rev
     brightnessctl
     just
-    neovim
     nautilus
     nautilus-open-any-terminal
     waybar
