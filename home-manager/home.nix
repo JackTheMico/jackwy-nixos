@@ -80,6 +80,7 @@
     nvd
     nushell
     starship
+    spotify
     tmux
     fzf
     yazi
@@ -149,7 +150,6 @@
 	  email = gitEmail;
 	};
 	ui = {
-	  paginate = "auto";
 	  pager = "delta";
 	  editor = "nixCats";
 	  default-command = "log";
