@@ -13,9 +13,10 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    outputs.nixosModules.jujutsu
-    outputs.nixosModules.fonts
-    outputs.nixosModules.network
+    # outputs.nixosModules.jujutsu
+    # outputs.nixosModules.fonts
+    # outputs.nixosModules.network
+    outputs.nixosModules
   ];
 
   # Use the systemd-boot EFI boot loader.

@@ -15,8 +15,8 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
-    outputs.homeManagerModules.obsidian
-    outputs.homeManagerModules.hyprland
+    outputs.homeManagerModules
+
 
     # Sops home-manager module
     inputs.sops-nix.homeManagerModules.sops
@@ -87,7 +87,6 @@
     lazygit
     thefuck
     qutebrowser
-    wezterm
     zoxide
   ];
 
