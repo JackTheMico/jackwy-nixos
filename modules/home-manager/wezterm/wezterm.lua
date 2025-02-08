@@ -11,14 +11,14 @@ local config = {
   show_new_tab_button_in_tab_bar = false,
   window_background_opacity = 0.9,
   text_background_opacity = 0.9,
-  adjust_window_size_when_changing_font_size = false,
+  adjust_window_size_when_changing_font_size = true,
   enable_wayland = true,
   enable_scroll_bar = true,
   window_padding = {
     top = 2,
     right = 2,
     left = 2,
-    bottom = 2,
+    bottom = 0,
   },
 }
 
