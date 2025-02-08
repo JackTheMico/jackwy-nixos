@@ -1,5 +1,5 @@
 # My system level fonts settings
-{inputs, moduleNameSpace, ...}:{pkgs, lib, config, ...}:with lib;
+{moduleNameSpace, pkgs, lib, config, ...}:with lib;
 let
   cfg = config.${moduleNameSpace}.fonts;
 in 

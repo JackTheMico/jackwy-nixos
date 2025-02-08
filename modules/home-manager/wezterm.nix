@@ -1,4 +1,4 @@
-{inputs, moduleNameSpace, ...}:{lib, pkgs, config, ...}: 
+{moduleNameSpace, lib, pkgs, config, ...}: 
 with lib; 
 let
   cfg = config.${moduleNameSpace}.wezterm;
