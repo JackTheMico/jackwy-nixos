@@ -15,7 +15,9 @@
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
-    outputs.homeManagerModules
+    outputs.homeManagerModules.hyprland
+    outputs.homeManagerModules.obsidian
+    outputs.homeManagerModules.wezterm
 
 
     # Sops home-manager module
@@ -27,6 +29,7 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ];
+  jackwyHMMods.wezterm.enable = true;
 
   nixpkgs = {
     # You can add overlays here

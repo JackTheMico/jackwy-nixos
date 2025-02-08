@@ -13,11 +13,12 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # outputs.nixosModules.jujutsu
-    # outputs.nixosModules.fonts
-    # outputs.nixosModules.network
-    outputs.nixosModules
+    outputs.nixosModules.network
+    outputs.nixosModules.jujutsu
+    outputs.nixosModules.fontProfiles
   ];
+
+  jackwySystemMods.fontProfiles.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

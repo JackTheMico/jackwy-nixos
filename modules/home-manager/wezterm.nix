@@ -1,9 +1,9 @@
-{moduleNameSpace, lib, pkgs, config, ...}: 
+{moduleNameSpace, ...}: {lib, pkgs, config, ...}:
 with lib; 
 let
   cfg = config.${moduleNameSpace}.wezterm;
 in {
-  options.${moduleNameSpace} = {
+  options.${moduleNameSpace}.wezterm = {
     enable = mkEnableOption "Jackwy WezTerm";
   };
 
