@@ -13,14 +13,7 @@ in {
     ];
     programs.wezterm = {
       enable = true;
-      extraConfig = /*lua*/ ''
-      return {
-        font = wezterm.font("Maple Mono NF")
-	font_size = 18;
-	hide_tab_bar_if_only_one_tab = true,
-        color_scheme = 'Catppuccin Macchiato'
-      }
-      '';
+      extraConfig = builtins.readFile ./wezterm.lua;
     };
   };
 }

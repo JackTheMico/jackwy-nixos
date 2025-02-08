@@ -8,5 +8,5 @@ in
   # List your module files here
   obsidian = import ./obsidian.nix;
   hyprland = import ./hyprland.nix;
-  wezterm = import ./wezterm.nix args;
+  wezterm = import ./wezterm args;
 }
