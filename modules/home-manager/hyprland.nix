@@ -2,7 +2,7 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      "$terminal" = "kitty";
+      "$terminal" = "wezterm";
       "$fileManager" = "nautilus";
       "$menu" = "wofi --show drun";
       "$mod" = "SUPER";

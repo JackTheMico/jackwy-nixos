@@ -16,9 +16,9 @@ local config = {
   enable_scroll_bar = true,
   window_padding = {
     top = 2,
-    right = 4,
+    right = 2,
     left = 2,
-    bottom = 20,
+    bottom = 2,
   },
 }
 
