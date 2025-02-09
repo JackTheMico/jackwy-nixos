@@ -6,7 +6,7 @@ let
 in 
 {
   # List your module files here
-  obsidian = import ./obsidian.nix;
-  hyprland = import ./hyprland.nix;
+  obsidian = import ./obsidian.nix args;
+  hyprland = import ./hyprland args;
   wezterm = import ./wezterm args;
 }

@@ -30,6 +30,11 @@
     # ./nvim.nix
   ];
   jackwyHMMods.wezterm.enable = true;
+  jackwyHMMods.obsidian.enable = true;
+  jackwyHMMods.hyprland = {
+    enable = true;
+    autoEnter = true;
+  };
 
   nixpkgs = {
     # You can add overlays here
@@ -107,12 +112,6 @@
         then
           shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
           exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-        fi
-      '';
-      # NOTE: Start Hyprland after login
-      profileExtra = ''
-        if uwsm check may-start; then
-	    exec systemd-cat -t uwsm_start uwsm start default
         fi
       '';
     };

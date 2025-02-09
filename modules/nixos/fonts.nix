@@ -1,13 +1,14 @@
 # My system level fonts settings
 {moduleNameSpace, ...}:{pkgs, lib, config, ...}:
+with lib;
 let
   cfg = config.${moduleNameSpace}.fontProfiles;
 in {
   options.${moduleNameSpace}.fontProfiles = {
-    enable = lib.mkEnableOption "System fonts module";
+    enable = mkEnableOption "System fonts module";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = mkIf cfg.enable {
     fonts.packages = with pkgs; [
       # Possible system defaut fonts
       noto-fonts

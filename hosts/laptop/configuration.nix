@@ -19,6 +19,8 @@
   ];
 
   jackwySystemMods.fontProfiles.enable = true;
+  jackwySystemMods.network.enable = true;
+  jackwySystemMods.jujutsu.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -139,11 +141,6 @@
     firefox.enable = true;
     uwsm.enable = true;
     mtr.enable = true;
-    hyprlock.enable = true;
-    hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
