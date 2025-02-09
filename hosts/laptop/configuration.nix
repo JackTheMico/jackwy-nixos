@@ -140,6 +140,10 @@
     };
     firefox.enable = true;
     uwsm.enable = true;
+    hyprland = {
+      enable = true;
+      withUWSM = true;
+    };
     mtr.enable = true;
     gnupg.agent = {
       enable = true;

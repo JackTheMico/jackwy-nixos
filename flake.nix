@@ -7,8 +7,14 @@
     # optional, not necessary for the module
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     # Catppuccin hyprland. TODO: set to ~/.config/hypr/ with HM
-    catppuccin-hyprland = "github:catppuccin/hyprland/release-v1.3";
-    catppuccin-hyprlock = "github:catppuccin/hyprlock";
+    catppuccin-hyprland = {
+      url = "github:catppuccin/hyprland";
+      flake = false;
+    };
+    catppuccin-hyprlock = {
+      url = "github:catppuccin/hyprlock";
+      flake = false;
+    };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # You can access packages and modules from different nixpkgs revs
