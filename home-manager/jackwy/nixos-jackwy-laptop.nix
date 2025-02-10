@@ -18,6 +18,7 @@
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.obsidian
     outputs.homeManagerModules.wezterm
+    outputs.homeManagerModules.chromium
 
 
     # Sops home-manager module
@@ -31,6 +32,7 @@
   ];
   jackwyHMMods.wezterm.enable = true;
   jackwyHMMods.obsidian.enable = true;
+  jackwyHMMods.chromium.enable = true;
   jackwyHMMods.hyprland = {
     enable = true;
     autoEnter = true;
@@ -76,7 +78,6 @@
     bat
     bash
     chezmoi
-    chromium
     discord # Might need to change nixos store source
     delta
     fish
@@ -89,7 +90,6 @@
     nushell
     starship
     spotify
-    tmux
     fzf
     yazi
     lazygit
