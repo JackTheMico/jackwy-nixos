@@ -33,6 +33,10 @@ in {
         # nix
         nil
         alejandra
+        # markdown
+        markdownlint-cli2
+        # web
+        biome
       ];
 
       plugins = with pkgs.vimPlugins; [
@@ -136,6 +140,25 @@ in {
               -- { import = "plugins" },
               -- treesitter handled by xdg.configFile."nvim/parser", put this line at the end of spec to clear ensure_installed
               { "nvim-treesitter/nvim-treesitter", opts = function(_, opts) opts.ensure_installed = {} end },
+            },
+            checker = {
+              enabled = true, -- check for plugin updates periodically
+              notify = true, -- notify on update
+            }, -- automatically check for plugin updates
+            performance = {
+              rtp = {
+                -- disable some rtp plugins
+                disabled_plugins = {
+                  "gzip",
+                  -- "matchit",
+                  -- "matchparen",
+                  -- "netrwPlugin",
+                  "tarPlugin",
+                  "tohtml",
+                  "tutor",
+                  "zipPlugin",
+                },
+              },
             },
           })
         '';
