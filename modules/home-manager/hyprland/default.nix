@@ -1,6 +1,7 @@
-{moduleNameSpace, ...}: {pkgs, lib, config, ...}: with lib;
-let
-  cfg = config.${moduleNameSpace}.hyprland;
+{ moduleNameSpace, ... }:
+{ pkgs, lib, config, inputs, ... }:
+with lib;
+let cfg = config.${moduleNameSpace}.hyprland;
 in {
   options.${moduleNameSpace}.hyprland = {
     enable = mkEnableOption "User hyprland";
@@ -10,11 +11,7 @@ in {
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-      plugins = with pkgs.hyprlandPlugins; [
-        hyprexpo
-	hyprspace
-	hyprtrails
-      ];
+      plugins = with pkgs.hyprlandPlugins; [ hyprexpo hyprspace hyprtrails ];
       settings = {
         "$terminal" = "wezterm";
         "$fileManager" = "nautilus";
@@ -44,15 +41,12 @@ in {
           pseudotile = true;
           preserve_split = true;
         };
-        master = {
-          new_status = "master";
-        };
+        master = { new_status = "master"; };
         bindm = [
           # Move/resize windows with mod + LMB/RMB and dragging
           "$mod, mouse:272, movewindow"
           "$mod, mouse:273, resizewindow"
         ];
-        # FIXME: Don't know how to configure this.
         bindl = [
           # Requires playerctl
           ",XF86AudioNext, exec, playerctl next"
@@ -60,7 +54,6 @@ in {
           ",XF86AudioPlay, exec, playerctl play-pause"
           ",XF86AudioPrev, exec, playerctl previous"
         ];
-        # FIXME: Don't know how to configure this.
         bindel = [
           # Laptop multimedia keys for volume and LCD brightness
           ",XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"
@@ -95,14 +88,11 @@ in {
           # workspaces
           # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
           builtins.concatLists (builtins.genList (i:
-              let ws = i;
-              in [
-                "$mod, ${toString i}, workspace, ${toString ws}"
-                "$mod SHIFT, ${toString i}, movetoworkspace, ${toString ws}"
-              ]
-            )
-            10)
-        );
+            let ws = i;
+            in [
+              "$mod, ${toString i}, workspace, ${toString ws}"
+              "$mod SHIFT, ${toString i}, movetoworkspace, ${toString ws}"
+            ]) 10));
         # TODO: Modules monitor
         monitor = "eDP-1, 1920x1080@60, 0x0, 1";
 
@@ -113,9 +103,7 @@ in {
         #   AQ_DRM_DEVICES = "/dev/dri/card1";
         # };
 
-        gestures = {
-          workspace_swipe = true;
-        };
+        gestures = { workspace_swipe = true; };
         animations = {
           enabled = true;
           bezier = [
@@ -154,16 +142,16 @@ in {
           inactive_opacity = 0.7;
 
           shadow = {
-              enabled = true;
-              range = 4;
-              render_power = 3;
-              color = "rgba(1a1a1aee)";
+            enabled = true;
+            range = 4;
+            render_power = 3;
+            color = "rgba(1a1a1aee)";
           };
           blur = {
-              enabled = true;
-              size = 3;
-              passes = 1;
-              vibrancy = 0.1696;
+            enabled = true;
+            size = 3;
+            passes = 1;
+            vibrancy = 0.1696;
           };
 
         };
@@ -177,22 +165,23 @@ in {
         };
       };
     };
-    home.packages = with pkgs; [
-      hyprshot
-    ];
-    programs= {
+    home.packages = with pkgs; [ hyprshot ];
+    programs = {
       hyprlock.enable = true;
       bash = mkIf cfg.autoEnter {
-      enable = true;
-      # NOTE: Start Hyprland after login
-      profileExtra = ''
-        if uwsm check may-start; then
-            exec systemd-cat -t uwsm_start uwsm start default
-        fi
-      '';
+        enable = true;
+        # NOTE: Start Hyprland after login
+        profileExtra = ''
+          if uwsm check may-start; then
+              exec systemd-cat -t uwsm_start uwsm start default
+          fi
+        '';
       };
     };
+    xdg.configFile."hypr/mocha.conf".source =
+      "${inputs.catppuccin-hyprland}/themes/mocha.conf";
+    xdg.configFile."hypr/hyprlock.conf".source =
+      "${inputs.catppuccin-hyprlock}/hyprlock.conf";
   };
-
 
 }
