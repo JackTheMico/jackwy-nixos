@@ -151,7 +151,7 @@
 	};
 	ui = {
 	  pager = "delta";
-	  editor = "nixCats";
+	  editor = "vim";
 	  default-command = "log";
 	  diff.format = "git";
 	  allow-init-native = true;
