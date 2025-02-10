@@ -6,13 +6,17 @@
     sops-nix.url = "github:Mic92/sops-nix";
     # optional, not necessary for the module
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    # Catppuccin hyprland. TODO: set to ~/.config/hypr/ with HM
+    # Catppuccin
     catppuccin-hyprland = {
       url = "github:catppuccin/hyprland";
       flake = false;
     };
     catppuccin-hyprlock = {
       url = "github:catppuccin/hyprlock";
+      flake = false;
+    };
+    catppuccin-waybar = {
+      url = "github:catppuccin/waybar";
       flake = false;
     };
 

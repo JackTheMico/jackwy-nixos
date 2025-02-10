@@ -1,14 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{
-  config,
-  lib,
-  outputs,
-  pkgs,
-  userName,
-  ...
-}: {
+{ config, lib, outputs, pkgs, userName, ... }: {
 
   imports = [
     # Include the results of the hardware scan.
@@ -34,12 +27,8 @@
     hostName = "nixos-jackwy-laptop";
     proxy.default = "http://127.0.0.1:7897";
     proxy.noProxy = "127.0.0.1,localhost,.localdomain";
-    wireless = {
-      enable = false;
-    };
-    networkmanager = {
-      enable = true;
-    };
+    wireless = { enable = false; };
+    networkmanager = { enable = true; };
   };
 
   # Set your time zone.
@@ -61,11 +50,11 @@
       fcitx5 = {
         waylandFrontend = true;
         addons = with pkgs; [
-      	  fcitx5-chinese-addons  # table input method support
-      	  fcitx5-nord            # a color theme
-      	];
+          fcitx5-chinese-addons # table input method support
+          fcitx5-nord # a color theme
+        ];
       };
-   };
+    };
   };
   # console = {
   #   font = "Lat2-Terminus16";
@@ -97,7 +86,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jackwenyoung = {
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -107,13 +96,11 @@
     brightnessctl
     clash-verge-rev
     dunst
-    swww # wallpaper
     fd
     git
     just
     nautilus
     nautilus-open-any-terminal
-    waybar
     wget
     wl-clipboard
     sops
@@ -151,7 +138,7 @@
     };
   };
   # Enable Flakes
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Storage Optimization
   nix.optimise.automatic = true;

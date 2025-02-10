@@ -32,6 +32,22 @@
         "type": "github"
       }
     },
+    "catppuccin-waybar": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720870206,
+        "narHash": "sha256-za0y6hcN2rvN6Xjf31xLRe4PP0YyHu2i454ZPjr+lWA=",
+        "owner": "catppuccin",
+        "repo": "waybar",
+        "rev": "ee8ed32b4f63e9c417249c109818dcc05a2e25da",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "waybar",
+        "type": "github"
+      }
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -115,11 +131,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1739158392,
-        "narHash": "sha256-BuooMiPCU+dtBPSZ+W5nswfHtLkoMq8nOCro9gyIT8M=",
+        "lastModified": 1739177387,
+        "narHash": "sha256-X7J1xFY9EPnQebW3xA4i0IBm75QnARNee8xvgwqdy9E=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "1c65820c611336df3c93187e95ec7a8ae0df2576",
+        "rev": "13d6b1f4b2b29f0a7c35a22d41909f528ebddb93",
         "type": "github"
       },
       "original": {
@@ -132,6 +148,7 @@
       "inputs": {
         "catppuccin-hyprland": "catppuccin-hyprland",
         "catppuccin-hyprlock": "catppuccin-hyprlock",
+        "catppuccin-waybar": "catppuccin-waybar",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",

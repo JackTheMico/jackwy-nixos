@@ -17,7 +17,7 @@ in {
         "$fileManager" = "nautilus";
         "$menu" = "wofi --show drun";
         "$mod" = "SUPER";
-        exec-once = "waybar &";
+        exec-once = "waybar";
         general = {
           gaps_in = 3;
           gaps_out = 16;
@@ -165,9 +165,27 @@ in {
         };
       };
     };
-    home.packages = with pkgs; [ hyprshot ];
+    home.packages = with pkgs; [ waybar hyprshot swww ];
     programs = {
       hyprlock.enable = true;
+      waybar = {
+        enable = true;
+        style = ''
+          @import "mocha.css";
+          * {
+            border: none;
+            border-radius: 0;
+            font-family: Maple Mono NF;
+          }
+          window#waybar {
+            background-color: shade(@base, 0.9);
+            border: 2px solid alpha(@crust, 0.3);
+          }
+          #workspaces button {
+            padding: 0 5px;
+          }
+        '';
+      };
       bash = mkIf cfg.autoEnter {
         enable = true;
         # NOTE: Start Hyprland after login
@@ -182,6 +200,8 @@ in {
       "${inputs.catppuccin-hyprland}/themes/mocha.conf";
     xdg.configFile."hypr/hyprlock.conf".source =
       "${inputs.catppuccin-hyprlock}/hyprlock.conf";
+    xdg.configFile."waybar/mocha.css".source =
+      "${inputs.catppuccin-waybar}/themes/mocha.css";
   };
 
 }
