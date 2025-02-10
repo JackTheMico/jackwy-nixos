@@ -19,6 +19,7 @@
     outputs.homeManagerModules.obsidian
     outputs.homeManagerModules.wezterm
     outputs.homeManagerModules.chromium
+    outputs.homeManagerModules.lazyvim
 
 
     # Sops home-manager module
@@ -31,6 +32,7 @@
     # ./nvim.nix
   ];
   jackwyHMMods.wezterm.enable = true;
+  jackwyHMMods.lazyvim.enable = true;
   jackwyHMMods.obsidian.enable = true;
   jackwyHMMods.chromium.enable = true;
   jackwyHMMods.hyprland = {
@@ -67,9 +69,6 @@
   home = {
     username = userName;
     homeDirectory = "/home/${userName}";
-    sessionVariables = {
-      EDITOR = "nixCats";
-    };
   };
 
   # Add stuff for your user as you see fit:

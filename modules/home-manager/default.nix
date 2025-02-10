@@ -10,4 +10,5 @@ in
   hyprland = import ./hyprland args;
   wezterm = import ./wezterm args;
   chromium = import ./chromium.nix args;
+  lazyvim = import ./lazyvim args;
 }
