@@ -32,11 +32,13 @@ in {
         isort
         # nix
         nil
-        alejandra
+        nixfmt-classic
         # markdown
         markdownlint-cli2
         # web
         biome
+        # shell
+        shfmt
       ];
 
       plugins = with pkgs.vimPlugins; [
