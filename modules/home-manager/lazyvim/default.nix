@@ -1,6 +1,6 @@
 {moduleNameSpace, ...}: { config, lib, pkgs, ... }:
 with lib;
-let
+let 
   cfg = config.${moduleNameSpace}.lazyvim;
   luaPath = "${config.home.homeDirectory}/codes/jackwy/jackwy-nixos/modules/home-manager/lazyvim/lua";
 in {
@@ -9,6 +9,9 @@ in {
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      neovide
+    ];
     programs.neovim = {
       enable = true;
       vimAlias = true;
