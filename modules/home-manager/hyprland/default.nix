@@ -168,24 +168,7 @@ in {
     home.packages = with pkgs; [ waybar hyprshot swww ];
     programs = {
       hyprlock.enable = true;
-      waybar = {
-        enable = true;
-        style = ''
-          @import "mocha.css";
-          * {
-            border: none;
-            border-radius: 0;
-            font-family: Maple Mono NF;
-          }
-          window#waybar {
-            background-color: shade(@base, 0.9);
-            border: 2px solid alpha(@crust, 0.3);
-          }
-          #workspaces button {
-            padding: 0 5px;
-          }
-        '';
-      };
+      waybar = { enable = true; };
       bash = mkIf cfg.autoEnter {
         enable = true;
         # NOTE: Start Hyprland after login
@@ -202,6 +185,8 @@ in {
       "${inputs.catppuccin-hyprlock}/hyprlock.conf";
     xdg.configFile."waybar/mocha.css".source =
       "${inputs.catppuccin-waybar}/themes/mocha.css";
+    xdg.configFile."waybar/config.jsonc".source = ./config.jsonc;
+    xdg.configFile."waybar/style.css".source = ./style.css;
   };
 
 }
