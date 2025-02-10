@@ -25,6 +25,7 @@ in {
         # FzfLua
         ripgrep
         fd
+        fzf
         # Python
         basedpyright
         ruff
@@ -42,8 +43,11 @@ in {
         let
           plugins = with pkgs.vimPlugins; [
             # LazyVim
+            fzf-lua
+            edgy-nvim
             LazyVim
             bufferline-nvim
+            blink-cmp
             cmp-buffer
             cmp-nvim-lsp
             cmp-path
@@ -61,6 +65,10 @@ in {
             neodev-nvim
             noice-nvim
             nui-nvim
+            nvim-nio
+            nvim-dap
+            nvim-dap-ui
+            nvim-dap-python
             nvim-cmp
             nvim-lint
             nvim-lspconfig
@@ -72,6 +80,8 @@ in {
             nvim-ts-autotag
             nvim-ts-context-commentstring
             nvim-web-devicons
+            neotest
+            neotest-python
             persistence-nvim
             plenary-nvim
             telescope-fzf-native-nvim
@@ -82,6 +92,7 @@ in {
             vim-illuminate
             vim-startuptime
             which-key-nvim
+            yanky-nvim
             overseer-nvim
             { name = "harpoon"; path = harpoon2; }
             { name = "LuaSnip"; path = luasnip; }
@@ -92,6 +103,7 @@ in {
             { name = "mini.indentscope"; path = mini-nvim; }
             { name = "mini.pairs"; path = mini-nvim; }
             { name = "mini.surround"; path = mini-nvim; }
+            { name = "mini.animate"; path = mini-nvim; }
           ];
           mkEntryFromDrv = drv:
             if lib.isDerivation drv then
