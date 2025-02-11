@@ -35,10 +35,13 @@ in {
         nixfmt-classic
         # markdown
         markdownlint-cli2
+        marksman
         # web
         biome
         # shell
         shfmt
+        # yaml
+        yaml-language-server
       ];
 
       plugins = with pkgs.vimPlugins; [ lazy-nvim ];
@@ -46,6 +49,10 @@ in {
       extraLuaConfig = let
         plugins = with pkgs.vimPlugins; [
           # LazyVim
+          vim-markdown-toc
+          markdown-preview-nvim
+          render-markdown-nvim
+          SchemaStore-nvim
           fzf-lua
           edgy-nvim
           LazyVim
@@ -63,7 +70,6 @@ in {
           gitsigns-nvim
           indent-blankline-nvim
           lualine-nvim
-          neo-tree-nvim
           neoconf-nvim
           neodev-nvim
           noice-nvim
@@ -72,6 +78,8 @@ in {
           nvim-dap
           nvim-dap-ui
           nvim-dap-python
+          nvim-dap-virtual-text
+          one-small-step-for-vimkind
           nvim-cmp
           nvim-lint
           nvim-lspconfig
@@ -162,7 +170,7 @@ in {
             { "LazyVim/LazyVim", import = "lazyvim.plugins" },
             -- The following configs are needed for fixing lazyvim on nix
             -- force enable telescope-fzf-native.nvim
-            { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
+            -- { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
             -- disable mason.nvim, use programs.neovim.extraPackages
             { "williamboman/mason-lspconfig.nvim", enabled = false },
             { "williamboman/mason.nvim", enabled = false },
