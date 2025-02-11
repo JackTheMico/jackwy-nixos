@@ -58,7 +58,6 @@ in {
           neo-tree-nvim
           LazyVim
           bufferline-nvim
-          blink-cmp
           cmp-buffer
           cmp-nvim-lsp
           cmp-path
