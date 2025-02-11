@@ -10,11 +10,10 @@
     outputs.homeManagerModules.wezterm
     outputs.homeManagerModules.chromium
     outputs.homeManagerModules.lazyvim
+    outputs.homeManagerModules.rofi
 
     # Sops home-manager module
     inputs.sops-nix.homeManagerModules.sops
-    # walker home-manager module
-    inputs.walker.homeManagerModules.default
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -22,6 +21,7 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ];
+  jackwyHMMods.rofi.enable = true;
   jackwyHMMods.wezterm.enable = true;
   jackwyHMMods.lazyvim.enable = true;
   jackwyHMMods.obsidian.enable = true;
@@ -85,7 +85,6 @@
     lazygit
     thefuck
     qutebrowser
-    walker
     zoxide
   ];
 
@@ -93,10 +92,6 @@
 
   # Enable home-manager and git
   programs = {
-    walker = {
-      enable = true;
-      runAsService = true;
-    };
     home-manager.enable = true;
     bash = {
       enable = true;

@@ -2,13 +2,13 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 let
   moduleNameSpace = "jackwyHMMods";
-  args = { inherit moduleNameSpace;};
-in 
-{
+  args = { inherit moduleNameSpace; };
+in {
   # List your module files here
   obsidian = import ./obsidian.nix args;
   hyprland = import ./hyprland args;
   wezterm = import ./wezterm args;
   chromium = import ./chromium.nix args;
   lazyvim = import ./lazyvim args;
+  rofi = import ./rofi args;
 }

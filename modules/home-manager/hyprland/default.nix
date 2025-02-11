@@ -15,7 +15,7 @@ in {
       settings = {
         "$terminal" = "wezterm";
         "$fileManager" = "nautilus";
-        "$menu" = "walker";
+        "$menu" = "rofi -show run";
         "$mod" = "SUPER";
         exec-once = "waybar";
         general = {
