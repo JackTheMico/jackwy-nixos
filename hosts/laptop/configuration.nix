@@ -136,8 +136,8 @@
       enableSSHSupport = true;
     };
   };
-  # Enable Flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  # Enable Flakes and Nix settings
+  nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
 
   # Storage Optimization
   nix.optimise.automatic = true;

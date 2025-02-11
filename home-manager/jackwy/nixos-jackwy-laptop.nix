@@ -13,6 +13,8 @@
 
     # Sops home-manager module
     inputs.sops-nix.homeManagerModules.sops
+    # walker home-manager module
+    inputs.walker.homeManagerModules.default
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
