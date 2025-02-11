@@ -187,8 +187,10 @@ in {
       "${inputs.catppuccin-hyprlock}/hyprlock.conf";
     xdg.configFile."waybar/mocha.css".source =
       "${inputs.catppuccin-waybar}/themes/mocha.css";
-    xdg.configFile."waybar/config.jsonc".source = ./config.jsonc;
-    xdg.configFile."waybar/style.css".source = ./style.css;
+    xdg.configFile."waybar/config.jsonc".source =
+      config.lib.file.mkOutOfStoreSymlink ./config.jsonc;
+    xdg.configFile."waybar/style.css".source =
+      config.lib.file.mkOutOfStoreSymlink ./style.css;
   };
 
 }
