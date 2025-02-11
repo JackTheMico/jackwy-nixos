@@ -3,6 +3,9 @@
 { inputs, outputs, userName, gitName, gitEmail, lib, config, pkgs, ... }: {
   # You can import other home-manager modules here
   imports = [
+    # Sops home-manager module
+    inputs.sops-nix.homeManagerModules.sops
+
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     outputs.homeManagerModules.hyprland
@@ -11,9 +14,8 @@
     outputs.homeManagerModules.chromium
     outputs.homeManagerModules.lazyvim
     outputs.homeManagerModules.rofi
-
-    # Sops home-manager module
-    inputs.sops-nix.homeManagerModules.sops
+    outputs.homeManagerModules.ssh
+    outputs.homeManagerModules.sopsnix
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -30,6 +32,11 @@
     enable = true;
     autoEnter = true;
   };
+  jackwyHMMods.ssh = {
+    enable = true;
+    githubIdentityFiles = [ "~/.ssh/id_nixos_jackwy_laptop" ];
+  };
+  jackwyHMMods.sopsnix.enable = true;
 
   nixpkgs = {
     # You can add overlays here

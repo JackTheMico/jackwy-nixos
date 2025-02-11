@@ -90,6 +90,24 @@
         "type": "github"
       }
     },
+    "jackwy-secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739427021,
+        "narHash": "sha256-cbvz0tTUCEk1SPGiLTEWrmtAmPYxNEzhjVhtgSDi838=",
+        "ref": "main",
+        "rev": "671f2cfc42a31992aeab8d70de0e35757be2ca44",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JackTheMico/jackwy-secrets.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/JackTheMico/jackwy-secrets.git"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1739055578,
@@ -150,6 +168,7 @@
         "catppuccin-hyprlock": "catppuccin-hyprlock",
         "catppuccin-waybar": "catppuccin-waybar",
         "home-manager": "home-manager",
+        "jackwy-secrets": "jackwy-secrets",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",

@@ -6,6 +6,11 @@
     sops-nix.url = "github:Mic92/sops-nix";
     # optional, not necessary for the module
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # my secrets
+    jackwy-secrets = {
+      url = "git+ssh://git@github.com/JackTheMico/jackwy-secrets.git?ref=main&shallow=1";
+      flake = false;
+    };
     # Catppuccin
     catppuccin-hyprland = {
       url = "github:catppuccin/hyprland";

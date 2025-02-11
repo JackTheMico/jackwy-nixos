@@ -11,4 +11,6 @@ in {
   chromium = import ./chromium.nix args;
   lazyvim = import ./lazyvim args;
   rofi = import ./rofi args;
+  ssh = import ./ssh.nix args;
+  sopsnix = import ./sopsnix.nix args;
 }
