@@ -1,16 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{
-  inputs,
-  outputs,
-  userName,
-  gitName,
-  gitEmail,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{ inputs, outputs, userName, gitName, gitEmail, lib, config, pkgs, ... }: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -20,7 +10,6 @@
     outputs.homeManagerModules.wezterm
     outputs.homeManagerModules.chromium
     outputs.homeManagerModules.lazyvim
-
 
     # Sops home-manager module
     inputs.sops-nix.homeManagerModules.sops
@@ -94,6 +83,7 @@
     lazygit
     thefuck
     qutebrowser
+    walker
     zoxide
   ];
 
@@ -101,6 +91,10 @@
 
   # Enable home-manager and git
   programs = {
+    walker = {
+      enable = true;
+      runAsService = true;
+    };
     home-manager.enable = true;
     bash = {
       enable = true;
@@ -114,22 +108,18 @@
         fi
       '';
     };
-    firefox.profiles.${userName}.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      swithyomega
-      tampermonkey
-      darkreader
-      tree-style-tab
-      immersive-translate
-      #NOTE: Install Toby manually.
-    ];
+    firefox.profiles.${userName}.extensions =
+      with pkgs.nur.repos.rycee.firefox-addons; [
+        swithyomega
+        tampermonkey
+        darkreader
+        tree-style-tab
+        immersive-translate
+        #NOTE: Install Toby manually.
+      ];
     gh = {
       enable = true;
-      extensions = with pkgs;[
-        gh-dash
-	gh-eco
-	gh-f
-        gh-markdown-preview
-      ];
+      extensions = with pkgs; [ gh-dash gh-eco gh-f gh-markdown-preview ];
     };
     git = {
       enable = true;
@@ -138,24 +128,24 @@
       extraConfig = {
         http.proxy = "http://127.0.0.1:7897";
         https.proxy = "http://127.0.0.1:7897";
-	commit.gpgsign = true;
-	user.signingkey = "A30DF874D95E6029";
+        commit.gpgsign = true;
+        user.signingkey = "A30DF874D95E6029";
       };
     };
     jujutsu = {
       enable = true;
       settings = {
         user = {
-	  name = gitName;
-	  email = gitEmail;
-	};
-	ui = {
-	  pager = "delta";
-	  editor = "vim";
-	  default-command = "log";
-	  diff.format = "git";
-	  allow-init-native = true;
-	};
+          name = gitName;
+          email = gitEmail;
+        };
+        ui = {
+          pager = "delta";
+          editor = "vim";
+          default-command = "log";
+          diff.format = "git";
+          allow-init-native = true;
+        };
       };
     };
     kitty = {
@@ -167,15 +157,13 @@
         update_check_interval = 0;
       };
     };
-    starship = {
-      enable = true;
-    };
+    starship = { enable = true; };
     fish = {
       enable = true;
       interactiveShellInit = ''
-        starship init fish | source
-        thefuck --alias | source
-	jj util completion fish | source
+                starship init fish | source
+                thefuck --alias | source
+        	jj util completion fish | source
       '';
       plugins = [
         {
@@ -199,10 +187,10 @@
         la = "eza -l -a";
         lt = "eza -T";
         lg = "lazygit";
-	lj = "lazyjj";
-	md = "mkdir";
-	jjbm = "jj bookmark s -r @- main";
-	gpom = "git push -u origin main";
+        lj = "lazyjj";
+        md = "mkdir";
+        jjbm = "jj bookmark s -r @- main";
+        gpom = "git push -u origin main";
       };
     };
     yazi = {

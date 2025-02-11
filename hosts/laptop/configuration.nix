@@ -104,7 +104,6 @@
     wget
     wl-clipboard
     sops
-    wofi
     ripgrep
     bash
     kitty

@@ -15,7 +15,7 @@ in {
       settings = {
         "$terminal" = "wezterm";
         "$fileManager" = "nautilus";
-        "$menu" = "wofi --show drun";
+        "$menu" = "walker";
         "$mod" = "SUPER";
         exec-once = "waybar";
         general = {

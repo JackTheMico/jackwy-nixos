@@ -55,6 +55,7 @@ in {
           SchemaStore-nvim
           fzf-lua
           edgy-nvim
+          neo-tree-nvim
           LazyVim
           bufferline-nvim
           blink-cmp
