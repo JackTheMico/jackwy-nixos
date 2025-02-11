@@ -165,7 +165,7 @@ in {
         };
       };
     };
-    home.packages = with pkgs; [ waybar hyprshot swww ];
+    home.packages = with pkgs; [ waybar hyprshot swww hypridle ];
     programs = {
       hyprlock.enable = true;
       waybar = { enable = true; };
@@ -179,6 +179,8 @@ in {
         '';
       };
     };
+    services.hypridle.enable = true;
+    xdg.configFile."hypr/hypridle.conf".source = ./hypridle.conf;
     xdg.configFile."hypr/mocha.conf".source =
       "${inputs.catppuccin-hyprland}/themes/mocha.conf";
     xdg.configFile."hypr/hyprlock.conf".source =
