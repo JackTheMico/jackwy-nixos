@@ -17,7 +17,7 @@ in {
           pv = "pr view";
         };
         editor = "nvim";
-        git_protocal = "ssh";
+        git_protocol = "ssh";
       };
       extensions = with pkgs; [ gh-dash gh-eco gh-f gh-markdown-preview ];
     };
