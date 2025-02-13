@@ -6,7 +6,7 @@ in {
   options.${moduleNameSpace}.ssh = {
     enable = mkEnableOption "User SSH";
     githubIdentityFiles = mkOption {
-      type = types.listOf(types.string);
+      type = types.listOf(types.str);
     };
   };
 

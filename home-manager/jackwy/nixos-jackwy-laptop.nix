@@ -8,11 +8,11 @@
 
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
+    outputs.homeManagerModules.gh
     outputs.homeManagerModules.hyprland
     outputs.homeManagerModules.obsidian
     outputs.homeManagerModules.wezterm
     outputs.homeManagerModules.chromium
-    outputs.homeManagerModules.lazyvim
     outputs.homeManagerModules.rofi
     outputs.homeManagerModules.ssh
     outputs.homeManagerModules.sopsnix
@@ -23,9 +23,9 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ];
+  jackwyHMMods.gh.enable = true;
   jackwyHMMods.rofi.enable = true;
   jackwyHMMods.wezterm.enable = true;
-  jackwyHMMods.lazyvim.enable = true;
   jackwyHMMods.obsidian.enable = true;
   jackwyHMMods.chromium.enable = true;
   jackwyHMMods.hyprland = {
@@ -82,7 +82,8 @@
     grc
     gh
     ghostty
-    neofetch
+    neovim
+    fastfetch
     nvd
     nushell
     starship
@@ -121,10 +122,6 @@
         immersive-translate
         #NOTE: Install Toby manually.
       ];
-    gh = {
-      enable = true;
-      extensions = with pkgs; [ gh-dash gh-eco gh-f gh-markdown-preview ];
-    };
     git = {
       enable = true;
       userName = gitName;
