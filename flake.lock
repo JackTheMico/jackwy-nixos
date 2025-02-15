@@ -108,6 +108,21 @@
         "url": "ssh://git@github.com/JackTheMico/jackwy-secrets.git"
       }
     },
+    "nixCats": {
+      "locked": {
+        "lastModified": 1738991100,
+        "narHash": "sha256-smTBsgrpagQrPWnOSq4wcz1Q1UJ4denBNPmBAJN2Ol4=",
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "rev": "54e2cc42dbefb9e152d9584794f5d8d94a20a534",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nixCats-nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1739206421,
@@ -162,6 +177,22 @@
         "type": "github"
       }
     },
+    "plugins-houdini": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1720213920,
+        "narHash": "sha256-diXdGip0lb7axIOWhXPn0A618g4Ijr4NMyprS8Ed1xY=",
+        "owner": "TheBlob42",
+        "repo": "houdini.nvim",
+        "rev": "1b7ec0a713a2aa9965848d8b93f66dc93716fd1c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheBlob42",
+        "repo": "houdini.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin-hyprland": "catppuccin-hyprland",
@@ -169,9 +200,11 @@
         "catppuccin-waybar": "catppuccin-waybar",
         "home-manager": "home-manager",
         "jackwy-secrets": "jackwy-secrets",
+        "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
+        "plugins-houdini": "plugins-houdini",
         "sops-nix": "sops-nix"
       }
     },

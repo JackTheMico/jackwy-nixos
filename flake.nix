@@ -25,6 +25,13 @@
       flake = false;
     };
 
+    # nixCats
+    nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    plugins-houdini = {
+      url = "github:TheBlob42/houdini.nvim";
+      flake = false;
+    };
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # You can access packages and modules from different nixpkgs revs
     # at the same time. Here's an working example:
@@ -76,6 +83,8 @@
       # Reusable home-manager modules you might want to export
       # These are usually stuff you would upstream into home-manager
       homeManagerModules = import ./modules/home-manager;
+      # TODO: My nixCats, will move to a proper place after refactor the repo like Birdeehub with flake-parts
+      jackwy-nixCats = import ./modules/nixCats { inherit inputs;};
 
       # NixOS configuration entrypoint
       # Available through 'nixos-rebuild --flake .#your-hostname'

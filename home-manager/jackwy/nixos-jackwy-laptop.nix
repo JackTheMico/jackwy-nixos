@@ -16,6 +16,7 @@
     outputs.homeManagerModules.rofi
     outputs.homeManagerModules.ssh
     outputs.homeManagerModules.sopsnix
+    outputs.jackwy-nixCats.homeModules.default
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -37,6 +38,9 @@
     githubIdentityFiles = [ "~/.ssh/id_nixos_jackwy_laptop" ];
   };
   jackwyHMMods.sopsnix.enable = true;
+  jackwyHMMods.ncat = {
+    enable = true;
+  };
 
   nixpkgs = {
     # You can add overlays here
