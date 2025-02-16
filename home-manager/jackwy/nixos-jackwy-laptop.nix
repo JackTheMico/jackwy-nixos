@@ -16,6 +16,7 @@
     outputs.homeManagerModules.rofi
     outputs.homeManagerModules.ssh
     outputs.homeManagerModules.sopsnix
+    outputs.homeManagerModules.qutebrowser
     outputs.jackwy-nixCats.homeModules.default
 
     # Or modules exported from other flakes (such as nix-colors):
@@ -38,6 +39,7 @@
     githubIdentityFiles = [ "~/.ssh/id_nixos_jackwy_laptop" ];
   };
   jackwyHMMods.sopsnix.enable = true;
+  jackwyHMMods.qutebrowser.enable = true;
   jackwyHMMods.ncat = {
     enable = true;
   };
@@ -96,7 +98,6 @@
     yazi
     lazygit
     thefuck
-    qutebrowser
     zoxide
   ];
 

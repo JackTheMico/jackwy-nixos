@@ -13,4 +13,5 @@ in {
   ssh = import ./ssh.nix args;
   sopsnix = import ./sopsnix.nix args;
   gh = import ./gh.nix args;
+  qutebrowser = import ./qutebrowser.nix args;
 }
