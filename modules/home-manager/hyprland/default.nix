@@ -84,15 +84,17 @@ in {
           # Example special workspace (scratchpad)
           "$mod, S, togglespecialworkspace, magic"
           "$mod SHIFT, S, movetoworkspace, special:magic"
+          "$mod, 0, workspace, 10"
+          "$mod SHIFT, 0, movetoworkspace, 10"
         ] ++ (
           # workspaces
           # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
           builtins.concatLists (builtins.genList (i:
-            let ws = i;
+            let ws = i + 1;
             in [
-              "$mod, ${toString i}, workspace, ${toString ws}"
-              "$mod SHIFT, ${toString i}, movetoworkspace, ${toString ws}"
-            ]) 10));
+              "$mod, ${toString (i + 1)}, workspace, ${toString ws}"
+              "$mod SHIFT, ${toString (i + 1)}, movetoworkspace, ${toString ws}"
+            ]) 9));
         # TODO: Modules monitor
         monitor = "eDP-1, 1920x1080@60, 0x0, 1";
 
