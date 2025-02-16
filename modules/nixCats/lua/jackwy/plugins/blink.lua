@@ -1,12 +1,12 @@
 return {
-	"houdini",
+	"blink-cmp",
 	event = "DeferredUIEnter",
+	for_cat = "general.cmp",
 	load = function(name)
 		vim.cmd.packadd(name)
-		vim.cmd.packadd("houdini")
+		vim.cmd.packadd("blink-cmp")
 	end,
-
 	after = function()
-		require("houdini").setup({})
+		require("blink-cmp").setup({})
 	end,
 }

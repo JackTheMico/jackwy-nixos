@@ -18,7 +18,7 @@
 
   The following is just the outputs function from the flake template.
  */
-{inputs, ... }@attrs: let
+{inputs, flake-path ? "/home/jackwenyoung/codes/jackwy/jackwy-nixos", ... }@attrs: let
   inherit (inputs) nixpkgs; # <-- nixpkgs = inputs.nixpkgsSomething;
   inherit (inputs.nixCats) utils;
   luaPath = "${./.}";
@@ -70,6 +70,7 @@
       };
       lua = [
         lua-language-server
+        stylua
       ];
       nix = [
         nix-doc
@@ -124,6 +125,14 @@
             lua
             python
             markdown
+            go
+            javascript
+            html
+            css
+            astro
+            yaml
+            toml
+            json
           ]
         ))
       ];
@@ -137,6 +146,8 @@
           markdown-preview-nvim
         ];
         core = [
+          fzf-lua
+          which-key-nvim
           nvim-surround
           conform-nvim
           undotree
@@ -144,13 +155,14 @@
           lualine-lsp-progress
           lualine-nvim
           yazi-nvim
-	  pkgs.neovimPlugins.houdini
+          pkgs.neovimPlugins.houdini
+          bufferline-nvim
         ];
-	cmp = [
-	  blink-cmp
-	  luasnip
-	  friendly-snippets
-	];
+        cmp = [
+          blink-cmp
+          luasnip
+          friendly-snippets
+        ];
       };
       python = [
         nvim-dap-python
@@ -197,16 +209,17 @@
 
   };
 
-  # TODO: finish the settings categories and extra.
   jackwyvim_settings = { pkgs, ...}@misc: {
     wrapRc = true;
     withNodeJs = true;
     withPython3 = true;
     viAlias = false;
     vimAlias = false;
+    unwrappedCfgPath = "${flake-path}/modules/nixCats";
   };
 
   jackwyvim_categories = { pkgs, ...}@misc: {
+    theme = true;
     general = true;
     treesitter = true;
     python = true;
@@ -224,6 +237,18 @@
       # see :help nixCats.flake.outputs.settings
       settings = jackwyvim_settings args // {
         aliases = [ "vim" ];
+      };
+      # and a set of categories that you want
+      # (and other information to pass to lua)
+      categories = jackwyvim_categories args // {
+      };
+      extra = jackwyvim_extra args // {
+      };
+    };
+    tcat = args: {
+      settings = jackwyvim_settings args // {
+        wrapRc = false;
+        aliases = [ "tvim" ];
       };
       # and a set of categories that you want
       # (and other information to pass to lua)

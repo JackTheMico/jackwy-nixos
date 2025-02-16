@@ -42,6 +42,7 @@
   jackwyHMMods.qutebrowser.enable = true;
   jackwyHMMods.ncat = {
     enable = true;
+    packageNames = [ "ncat" "tcat" ];
   };
 
   nixpkgs = {
