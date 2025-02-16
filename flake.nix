@@ -24,6 +24,10 @@
       url = "github:catppuccin/waybar";
       flake = false;
     };
+    catppuccin-rofi = {
+      url = "github:catppuccin/rofi";
+      flake = false;
+    };
 
     # nixCats
     nixCats.url = "github:BirdeeHub/nixCats-nvim";

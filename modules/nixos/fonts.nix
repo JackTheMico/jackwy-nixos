@@ -9,13 +9,25 @@ in {
   };
 
   config = mkIf cfg.enable {
-    fonts.packages = with pkgs; [
-      # Possible system defaut fonts
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-emoji
-      (nerdfonts.override {fonts = ["Hack" "FiraCode"];})
-      maple-mono-NF
-    ];
+    fonts = {
+      packages = with pkgs; [
+        # Possible system defaut fonts
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-emoji
+        (nerdfonts.override {fonts = ["Hack" "FiraCode"];})
+        maple-mono-NF
+        vazir-fonts
+        ubuntu_font_family
+        liberation_ttf
+      ];
+      fontconfig = {
+        defaultFonts = {
+          serif = [  "Liberation Serif" "Vazirmatn" ];
+          sansSerif = [ "Ubuntu" "Vazirmatn" ];
+          monospace = [ "Maple Mono NF" ];
+        };
+      };
+    };
   };
 }
