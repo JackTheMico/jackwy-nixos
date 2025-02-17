@@ -9,11 +9,13 @@
     outputs.nixosModules.network
     outputs.nixosModules.jujutsu
     outputs.nixosModules.fontProfiles
+    outputs.nixosModules.hack
   ];
 
   jackwySystemMods.fontProfiles.enable = true;
   jackwySystemMods.network.enable = true;
   jackwySystemMods.jujutsu.enable = true;
+  jackwySystemMods.hack.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

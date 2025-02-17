@@ -10,4 +10,5 @@ in
   jujutsu = import ./jujutsu.nix args;
   fontProfiles = import ./fonts.nix args;
   network = import ./network.nix args;
+  hack = import ./hack.nix args;
 }

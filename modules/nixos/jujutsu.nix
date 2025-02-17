@@ -4,7 +4,7 @@ let
   cfg = config.${moduleNameSpace}.jujutsu;
 in {
   options.${moduleNameSpace}.jujutsu = {
-    enable = mkEnableOption "Jujutsu";
+    enable = mkEnableOption "System Jujutsu";
   };
   config = mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
