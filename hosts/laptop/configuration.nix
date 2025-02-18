@@ -95,6 +95,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     age
+    asciinema
+    asciinema-agg
     brightnessctl
     clash-verge-rev
     dunst
