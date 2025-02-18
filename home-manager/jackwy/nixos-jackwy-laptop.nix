@@ -17,6 +17,8 @@
     outputs.homeManagerModules.ssh
     outputs.homeManagerModules.sopsnix
     outputs.homeManagerModules.qutebrowser
+    outputs.homeManagerModules.sql
+    outputs.homeManagerModules.hack
     outputs.jackwy-nixCats.homeModules.default
 
     # Or modules exported from other flakes (such as nix-colors):
@@ -26,6 +28,8 @@
     # ./nvim.nix
   ];
   jackwyHMMods.gh.enable = true;
+  jackwyHMMods.sql.enable = true;
+  jackwyHMMods.hack.enable = true;
   jackwyHMMods.rofi.enable = true;
   jackwyHMMods.wezterm.enable = true;
   jackwyHMMods.obsidian.enable = true;
@@ -166,9 +170,10 @@
     fish = {
       enable = true;
       interactiveShellInit = ''
-                starship init fish | source
-                thefuck --alias | source
-        	jj util completion fish | source
+        starship init fish | source
+        thefuck --alias | source
+        jj util completion fish | source
+        fzf_configure_bindings --processes=\cp
       '';
       plugins = [
         {

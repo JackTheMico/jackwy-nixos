@@ -18,7 +18,7 @@ in {
       httprobe
       gowitness
       katana
-      metasploit
+      # metasploit
       mitmproxy
       nmap
       nuclei
@@ -28,6 +28,37 @@ in {
       sqlmap
       postgresql
     ];
-    services.postgresql.enable = true;
+    services.postgresql = {
+      enable = true;
+      enableTCPIP = true;
+      authentication = pkgs.lib.mkOverride 10 ''
+        # TYPE  DATABASE  DBuser  ADDRESS       METHOD
+          local all       all                   trust
+          host  all       all     127.0.0.1/32  trust
+          host  all       all     ::1/128       trust
+      '';
+      ensureUsers = [
+        {
+          name = "msftest";
+          ensureClauses = {
+            createdb = true;
+          };
+        }
+        {
+          name = "msf";
+          ensureClauses = {
+            createdb = true;
+          };
+        }
+      ];
+      settings = {
+        port = 5432;
+        log_connections = true;
+        log_statement = "all";
+        logging_collector = true;
+        log_disconnections = true;
+        log_destination = lib.mkForce "syslog";
+      };
+    };
   };
 }

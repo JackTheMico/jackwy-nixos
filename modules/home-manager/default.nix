@@ -14,4 +14,6 @@ in {
   sopsnix = import ./sopsnix.nix args;
   gh = import ./gh.nix args;
   qutebrowser = import ./qutebrowser.nix args;
+  sql = import ./sql args;
+  hack = import ./hack.nix args;
 }

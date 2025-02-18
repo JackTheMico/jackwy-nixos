@@ -65,8 +65,8 @@ in {
         ];
         bind = [
           # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-          "$mod, Q, exec, $terminal"
-          "$mod, C, killactive"
+          "$mod, enter, exec, $terminal"
+          "$mod, Q, killactive"
           "$mod, M, exit"
           "$mod, E, exec, $fileManager"
           "$mod, V, togglefloating"
