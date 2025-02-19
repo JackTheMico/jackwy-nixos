@@ -193,6 +193,22 @@
         "type": "github"
       }
     },
+    "plugins-hlargs": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1735928893,
+        "narHash": "sha256-HIQrwlOP/iQoNpH7ETusb7PMaGKrkOrhHlNdQ+fYeCk=",
+        "owner": "m-demare",
+        "repo": "hlargs.nvim",
+        "rev": "a5a7fdacc0ac2f7ca9d241e0e059cb85f0e733bc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "m-demare",
+        "repo": "hlargs.nvim",
+        "type": "github"
+      }
+    },
     "plugins-houdini": {
       "flake": false,
       "locked": {
@@ -221,6 +237,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
+        "plugins-hlargs": "plugins-hlargs",
         "plugins-houdini": "plugins-houdini",
         "sops-nix": "sops-nix"
       }

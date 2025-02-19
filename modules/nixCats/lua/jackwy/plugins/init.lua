@@ -7,4 +7,5 @@ require("lze").load({
 	{ import = "jackwy.plugins.lualine" },
 	{ import = "jackwy.plugins.snacks" },
 	{ import = "jackwy.plugins.blink" },
+	{ import = "jackwy.plugins.nestsitter" },
 })

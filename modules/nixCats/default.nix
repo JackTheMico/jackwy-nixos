@@ -121,6 +121,8 @@
         nvim-treesitter-textobjects
         (nvim-treesitter.withPlugins (
           plugins: with plugins; [
+            bash
+            fish
             nix
             lua
             python
@@ -157,6 +159,7 @@
           yazi-nvim
           pkgs.neovimPlugins.houdini
           bufferline-nvim
+          treesj
         ];
         cmp = [
           blink-cmp
@@ -164,6 +167,9 @@
           friendly-snippets
         ];
       };
+      otter = [
+        otter-nvim
+      ];
       python = [
         nvim-dap-python
       ];
@@ -174,6 +180,9 @@
         nvim-dap
         nvim-dap-ui
         nvim-dap-virtual-text
+      ];
+      other = [
+        pkgs.neovimPlugins.hlargs
       ];
 
     };
@@ -221,9 +230,12 @@
   jackwyvim_categories = { pkgs, ...}@misc: {
     theme = true;
     general = true;
-    treesitter = true;
+    otter = true;
+    lua = true;
     python = true;
+    neonixdev = true;
     debug = true;
+    treesitter = true;
   };
 
   jackwyvim_extra = { pkgs, ...}@misc: {

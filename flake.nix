@@ -35,6 +35,10 @@
       url = "github:TheBlob42/houdini.nvim";
       flake = false;
     };
+    "plugins-hlargs" = {
+      url = "github:m-demare/hlargs.nvim";
+      flake = false;
+    };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # You can access packages and modules from different nixpkgs revs
