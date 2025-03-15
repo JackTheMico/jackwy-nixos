@@ -118,6 +118,27 @@
             }
           ];
         };
+	nixos-jackwy-desktop = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs userName gitName gitEmail; };
+          modules = [
+            # > Our main nixos configuration file <
+            ./hosts/desktop/configuration.nix
+            sops-nix.nixosModules.sops
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useUserPackages = true;
+              home-manager.users.${userName} =
+                import ./home-manager/jackwy/nixos-jackwy-desktop.nix;
+              home-manager.backupFileExtension = "backup";
+
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home.nix
+              home-manager.extraSpecialArgs = {
+                inherit inputs outputs userName gitName gitEmail;
+              };
+            }
+          ];
+	};
       };
 
       # Standalone home-manager configuration entrypoint
@@ -135,6 +156,18 @@
               ./home-manager/jackwy/nixos-jackwy-laptop.nix
             ];
           };
-      };
-    };
+        "${userName}@nixos-jackwy-desktop" =
+          home-manager.lib.homeManagerConfiguration {
+            pkgs =
+              nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+            extraSpecialArgs = {
+              inherit inputs outputs userName gitName gitEmail;
+            };
+            modules = [
+              # > Our main home-manager configuration file <
+              ./home-manager/jackwy/nixos-jackwy-desktop.nix
+            ];
+        };
+     };
+  };
 }

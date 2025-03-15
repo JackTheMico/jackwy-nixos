@@ -2,19 +2,20 @@
 { config, lib, inputs, ... }:
 with lib;
 let cfg = config.${moduleNameSpace}.rofi;
-  themeDir = "${config.home.homeDirectory}/.config/rofi/themes";
+  themeDir = "${config.home.homeDirectory}/.config/rofi";
 in {
   options.${moduleNameSpace}.rofi = { enable = mkEnableOption "User Rofi"; };
 
   config = mkIf cfg.enable { 
-    xdg.configFile."rofi/themes".source = "${inputs.catppuccin-rofi}/basic/.local/share/rofi/themes";
+    xdg.configFile."rofi/themes".source = "${inputs.catppuccin-rofi}/themes";
+    xdg.configFile."rofi/catppuccin-default.rasi".source = "${inputs.catppuccin-rofi}/catppuccin-default.rasi";
     programs.rofi = { 
       enable = true; 
       extraConfig = {
-        modi= "run,drun,window";
+        modi= "drun,run,window";
         icon-theme= "Oranchelo";
         show-icons= true;
-        terminal= "alacritty";
+        terminal= "kitty";
         drun-display-format= "{icon} {name}";
         location= 0;
         disable-history= false;
@@ -25,7 +26,7 @@ in {
         display-Network= " 󰤨  Network";
         sidebar-mode= true;
       };
-      theme = "${themeDir}/catppuccin-mocha.rasi";
+      theme = "${themeDir}/catppuccin-default.rasi";
     }; 
   };
 }

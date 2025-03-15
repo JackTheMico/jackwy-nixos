@@ -2,12 +2,12 @@ return {
 	{
 		"which-key.nvim",
 		-- cmd = { "" },
-		for_cat = "general.core",
+		for_cat = "other",
 		event = "DeferredUIEnter",
 		-- ft = "",
 		-- keys = "",
 		-- colorscheme = "",
-		after = function(plugin)
+		after = function(_)
 			require("which-key").setup({})
 			local leaderCmsg
 			if nixCats("AI") then

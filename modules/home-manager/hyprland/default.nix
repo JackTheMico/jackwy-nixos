@@ -15,7 +15,7 @@ in {
       settings = {
         "$terminal" = "wezterm";
         "$fileManager" = "nautilus";
-        "$menu" = "rofi -show run";
+        "$menu" = "rofi -show drun";
         "$mod" = "SUPER";
         exec-once = "waybar";
         general = {
@@ -160,7 +160,7 @@ in {
         input = {
           kb_layout = "us";
           follow_mouse = 1;
-          kb_options = "ctrl:swapcaps";
+          kb_options = "ctrl:nocaps";
           # touchpad = {
           #   natural_scoll = true;
           # };
