@@ -86,7 +86,7 @@
     bat
     bash
     chezmoi
-    # discord # Might need to change nixos store source
+    discord # Might need to change nixos store source
     delta
     fish
     eza
@@ -98,7 +98,7 @@
     nvd
     nushell
     starship
-    # spotify
+    spotify
     fzf
     yazi
     lazygit
