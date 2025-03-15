@@ -7,8 +7,9 @@ in
 {
   # List your module files here
   # my-module = import ./my-module.nix;
-  jujutsu = import ./jujutsu.nix args;
+  vcs = import ./vcs.nix args;
   fontProfiles = import ./fonts.nix args;
   network = import ./network.nix args;
   hack = import ./hack.nix args;
+  basic = import ./basic.nix args;
 }

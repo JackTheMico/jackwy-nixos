@@ -26,7 +26,7 @@ in {
       wpscan
       subfinder
       sqlmap
-      postgresql
+      # postgresql
     ];
     services.postgresql = {
       enable = true;

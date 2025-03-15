@@ -7,14 +7,16 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     outputs.nixosModules.network
-    outputs.nixosModules.jujutsu
+    outputs.nixosModules.vcs
     outputs.nixosModules.fontProfiles
     outputs.nixosModules.hack
+    outputs.nixosModules.basic
   ];
 
   jackwySystemMods.fontProfiles.enable = true;
   jackwySystemMods.network.enable = true;
-  jackwySystemMods.jujutsu.enable = true;
+  jackwySystemMods.vcs.enable = true;
+  jackwySystemMods.basic.enable = true;
   jackwySystemMods.hack.enable = true;
 
   # Use the systemd-boot EFI boot loader.
@@ -67,9 +69,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-  # Configure keymap in X11
-  services.xserver.xkb.layout = "us";
-  services.xserver.xkb.options = "eurosign:e,ctrl:swapcaps";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -93,33 +92,10 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    age
-    asciinema
-    asciinema-agg
-    brightnessctl
-    clash-verge-rev
-    dunst
-    fd
-    git
-    just
-    nautilus
-    nautilus-open-any-terminal
-    wget
-    wl-clipboard
-    sops
-    ripgrep
-    bash
-    kitty
-  ];
+  # environment.systemPackages = with pkgs; [
+  # ];
 
   programs = {
-    clash-verge = {
-      enable = true;
-      package = pkgs.clash-verge-rev;
-      tunMode = true;
-      autoStart = true;
-    };
     nh = {
       enable = true;
       flake = "/home/${userName}/codes/jackwy/jackwy-nixos";
