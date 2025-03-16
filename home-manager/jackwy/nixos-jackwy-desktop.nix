@@ -19,6 +19,9 @@
     outputs.homeManagerModules.qutebrowser
     outputs.homeManagerModules.sql
     outputs.homeManagerModules.hack
+    outputs.homeManagerModules.cmdline
+    outputs.homeManagerModules.gui
+    outputs.homeManagerModules.scrcpy
     outputs.jackwy-nixCats.homeModules.default
 
     # Or modules exported from other flakes (such as nix-colors):
@@ -27,6 +30,9 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ];
+  jackwyHMMods.cmdline.enable = true;
+  jackwyHMMods.gui.enable = true;
+  jackwyHMMods.scrcpy.enable = true;
   jackwyHMMods.gh.enable = false;
   jackwyHMMods.sql.enable = true;
   jackwyHMMods.hack.enable = false;
@@ -54,9 +60,9 @@
     # You can add overlays here
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      # outputs.overlays.additions
+      # outputs.overlays.modifications
+      # outputs.overlays.unstable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -83,48 +89,12 @@
 
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
-  home.packages = with pkgs; [
-    bat
-    bash
-    chezmoi
-    discord
-    delta
-    fish
-    eza
-    grc
-    gh
-    ghostty
-    neovim
-    fastfetch
-    nvd
-    nushell
-    starship
-    spotify
-    fzf
-    yazi
-    lazygit
-    thefuck
-    qtscrcpy
-    scrcpy
-    android-tools
-    zoxide
-  ];
+  # home.packages = with pkgs; [
+  # ];
 
   # Enable home-manager and git
   programs = {
     home-manager.enable = true;
-    bash = {
-      enable = true;
-      enableCompletion = true;
-      # Enter fish shell
-      initExtra = ''
-        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-        then
-          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-        fi
-      '';
-    };
     firefox.profiles.${userName}.extensions =
       with pkgs.nur.repos.rycee.firefox-addons; [
         swithyomega
@@ -160,70 +130,6 @@
           allow-init-native = true;
         };
       };
-    };
-    kitty = {
-      enable = true;
-      font.name = "Hack";
-      settings = {
-        scrollback_lines = 10000;
-        enable_audio_bell = false;
-        update_check_interval = 0;
-      };
-    };
-    starship = { enable = true; };
-    fish = {
-      enable = true;
-      interactiveShellInit = ''
-        starship init fish | source
-        thefuck --alias | source
-        jj util completion fish | source
-        fzf_configure_bindings --processes=\cp
-      '';
-      functions = {
-        enproxy = "set -xg ALL_PROXY http://localhost:7897 ; set -xg HTTP_PROXY http://localhost:7897 ; set -xg HTTPS_PROXY http://localhost:7897; echo 'Proxy Enabled'";
-        deproxy = "set -e ALL_PROXY; set -e HTTPS_PROXY; set -e HTTP_PROXY; echo 'Proxy disabled'";
-        gitignore = "curl -sL https://www.gitignore.io/api/$argv";
-      };
-      plugins = [
-        {
-          name = "done";
-          src = pkgs.fishPlugins.done.src;
-        }
-        {
-          name = "grc";
-          src = pkgs.fishPlugins.grc.src;
-        }
-        {
-          name = "fzf-fish";
-          src = pkgs.fishPlugins.fzf-fish.src;
-        }
-      ];
-      shellAbbrs = {
-        gco = "git checkout";
-        npu = "nix-prefetch-url";
-        ls = "eza";
-        ll = "eza -l";
-        la = "eza -l -a";
-        lt = "eza -T";
-        lg = "lazygit";
-        lj = "lazyjj";
-        md = "mkdir";
-        jjbm = "jj bookmark s -r @- main";
-        gpom = "git push -u origin main";
-        czi = "chezmoi";
-      };
-    };
-    yazi = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
-    };
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
     };
   };
 
