@@ -103,6 +103,9 @@
     yazi
     lazygit
     thefuck
+    qtscrcpy
+    scrcpy
+    android-tools
     zoxide
   ];
 

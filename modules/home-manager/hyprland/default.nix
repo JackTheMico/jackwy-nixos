@@ -112,6 +112,7 @@ in {
           "XDG_SESSION_DESKTOP,Hyprland"
           "QT_QPA_PLATFORM,wayland"
           "XDG_SCREENSHOTS_DIR,$HOME/screens"
+          "ELECTRON_OZONE_PLATFORM_HINT,auto"
         ];
         windowrulev2 = let
           rulesForWindow = window: map (rule: "${rule},${window}");

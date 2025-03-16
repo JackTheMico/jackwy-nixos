@@ -87,7 +87,7 @@
     bat
     bash
     chezmoi
-    discord # Might need to change nixos store source
+    discord
     delta
     fish
     eza
@@ -104,6 +104,9 @@
     yazi
     lazygit
     thefuck
+    qtscrcpy
+    scrcpy
+    android-tools
     zoxide
   ];
 
