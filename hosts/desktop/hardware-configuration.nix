@@ -38,6 +38,8 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
+    bluetooth.enable = true;
+    bluetooth.powerOnBoot = true;
     graphics.enable = true;
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     nvidia = { 

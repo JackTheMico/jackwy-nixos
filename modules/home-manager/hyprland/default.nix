@@ -6,6 +6,11 @@ in {
   options.${moduleNameSpace}.hyprland = {
     enable = mkEnableOption "User hyprland";
     autoEnter = mkEnableOption "Auto enter hyprland after login";
+    monitor = mkOption {
+      type = types.listOf types.str;
+      description = "List of monitor settings: 'name, resolution, position, scale'";
+      default = ["eDP-1, 1920x1080@60, 0x0, 1"];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -95,15 +100,17 @@ in {
               "$mod, ${toString (i + 1)}, workspace, ${toString ws}"
               "$mod SHIFT, ${toString (i + 1)}, movetoworkspace, ${toString ws}"
             ]) 9));
-        # TODO: Modules monitor
-        monitor = "eDP-1, 1920x1080@60, 0x0, 1";
+        monitor = cfg.monitor;
+        env = [
+          # Hint Electron apps to use Wayland
+          "NIXOS_OZONE_WL,1"
+          "XDG_CURRENT_DESKTOP,Hyprland"
+          "XDG_SESSION_TYPE,wayland"
+          "XDG_SESSION_DESKTOP,Hyprland"
+          "QT_QPA_PLATFORM,wayland"
+          "XDG_SCREENSHOTS_DIR,$HOME/screens"
+        ];
 
-        # env = {
-        #   XCURSOR_SIZE = 24;
-        #   HYPRCURSOR_SIZE = 24;
-        # 	# TODO: Modules gpucard
-        #   AQ_DRM_DEVICES = "/dev/dri/card1";
-        # };
 
         gestures = { workspace_swipe = true; };
         animations = {

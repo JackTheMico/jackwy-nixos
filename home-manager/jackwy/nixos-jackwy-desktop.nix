@@ -37,6 +37,7 @@
   jackwyHMMods.hyprland = {
     enable = true;
     autoEnter = false;
+    monitor = ["DP-2, 1920x1080@60, 0x0, 1" "DP-3, 2560x1440@60, 1920x0, 1.20"];
   };
   jackwyHMMods.ssh = {
     enable = true;
@@ -175,6 +176,11 @@
         jj util completion fish | source
         fzf_configure_bindings --processes=\cp
       '';
+      functions = {
+        enproxy = "set -xg ALL_PROXY http://localhost:7897 ; set -xg HTTP_PROXY http://localhost:7897 ; set -xg HTTPS_PROXY http://localhost:7897; echo 'Proxy Enabled'";
+        deproxy = "set -e ALL_PROXY; set -e HTTPS_PROXY; set -e HTTP_PROXY; echo 'Proxy disabled'";
+        gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+      };
       plugins = [
         {
           name = "done";
