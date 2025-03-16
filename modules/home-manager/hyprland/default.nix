@@ -22,7 +22,7 @@ in {
         "$fileManager" = "nautilus";
         "$menu" = "rofi -show drun";
         "$mod" = "SUPER";
-        exec-once = ["waybar" "clash-verge" "clipse -listen"];
+        exec-once = ["waybar" "clash-verge" "clipse -listen" "fcitx5"];
         general = {
           gaps_in = 3;
           gaps_out = 16;
