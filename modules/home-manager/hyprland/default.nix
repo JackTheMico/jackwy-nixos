@@ -22,7 +22,7 @@ in {
         "$fileManager" = "nautilus";
         "$menu" = "rofi -show drun";
         "$mod" = "SUPER";
-        exec-once = "waybar";
+        exec-once = ["waybar" "clash-verge" "clipse -listen"];
         general = {
           gaps_in = 3;
           gaps_out = 16;
@@ -74,7 +74,7 @@ in {
           "$mod, Q, killactive"
           "$mod, M, exit"
           "$mod, E, exec, $fileManager"
-          "$mod, V, togglefloating"
+          "$mod, F, togglefloating"
           "$mod, R, exec, $menu"
           "$mod, P, pseudo, # dwindle"
           "$mod, J, togglesplit, # dwindle"
@@ -91,6 +91,9 @@ in {
           "$mod SHIFT, S, movetoworkspace, special:magic"
           "$mod, 0, workspace, 10"
           "$mod SHIFT, 0, movetoworkspace, 10"
+
+          # Clipse
+          "$mod, V, exec, kitty --class clipse -e clipse"
         ] ++ (
           # workspaces
           # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
@@ -110,7 +113,15 @@ in {
           "QT_QPA_PLATFORM,wayland"
           "XDG_SCREENSHOTS_DIR,$HOME/screens"
         ];
-
+        windowrulev2 = let
+          rulesForWindow = window: map (rule: "${rule},${window}");
+        in
+          []
+          # General window rules
+          ++ (rulesForWindow "floating:0" ["rounding 0"])
+          ++ (rulesForWindow "floating:1" ["rounding 5"])
+          ++ (rulesForWindow "floating:0" ["noshadow"])
+          ++ (rulesForWindow "class:(clipse)" ["float" "size 622 652" "stayfocused"]);
 
         gestures = { workspace_swipe = true; };
         animations = {

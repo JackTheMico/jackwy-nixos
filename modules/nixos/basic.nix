@@ -13,6 +13,7 @@ in {
       asciinema-agg
       brightnessctl
       clash-verge-rev
+      clipse
       dunst
       fd
       just
