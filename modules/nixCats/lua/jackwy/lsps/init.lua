@@ -19,8 +19,8 @@ return {
     on_require = { "lspconfig" },
     lsp = function(plugin)
       require('lspconfig')[plugin.name].setup(vim.tbl_extend("force",{
-        capabilities = require('birdee.LSPs.caps_and_attach').get_capabilities(plugin.name),
-        on_attach = require('birdee.LSPs.caps_and_attach').on_attach,
+        capabilities = require('jackwy.lsps.caps_and_attach').get_capabilities(plugin.name),
+        on_attach = require('jackwy.lsps.caps_and_attach').on_attach,
       }, plugin.lsp or {}))
     end,
     -- before = function(plugin)
@@ -82,7 +82,7 @@ return {
     enabled = catUtils.isNixCats and (nixCats('nix') or nixCats('neonixdev')),
     after = function(_)
       vim.api.nvim_create_user_command("StartNilLSP", function()
-        require('lspconfig').nil_ls.setup { capabilities = require('birdee.LSPs.caps_and_attach').get_capabilities('nil_ls') }
+        require('lspconfig').nil_ls.setup { capabilities = require('jackwy.lsps.caps_and_attach').get_capabilities('nil_ls') }
       end, { desc = 'Run nil-ls (when you really need docs for the builtins and nixd refuse)' })
     end,
     lsp = {

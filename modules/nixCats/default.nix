@@ -109,7 +109,7 @@ let
       };
 
       startupPlugins = with pkgs.vimPlugins; {
-        theme = builtins.getAttr (extra.colorscheme or "catppuccin-mocha") {
+        theme = builtins.getAttr (extra.colorscheme or "onedark") {
           "onedark" = onedark-nvim;
           "catppuccin" = catppuccin-nvim;
           "catppuccin-mocha" = catppuccin-nvim;
@@ -118,6 +118,7 @@ let
         };
         general = [
           lze
+	  pkgs.neovimPlugins.lzextras
           vim-repeat
           nvim-nio
           nvim-notify
@@ -136,24 +137,6 @@ let
         treesitter = [
           nvim-treesitter-textobjects
           nvim-treesitter.withAllGrammars
-          # (nvim-treesitter.withPlugins (
-          #   plugins: with plugins; [
-          #     bash
-          #     fish
-          #     nix
-          #     lua
-          #     python
-          #     markdown
-          #     go
-          #     javascript
-          #     html
-          #     css
-          #     astro
-          #     yaml
-          #     toml
-          #     json
-          #   ]
-          # ))
         ];
 
       };

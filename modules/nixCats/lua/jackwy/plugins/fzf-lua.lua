@@ -5,6 +5,7 @@ return {
     {"<leader>sp", "<CMD>FzfLua live_grep_resume<CR>", "Live grep project"},
     {"<leader>sb", "<CMD>FzfLua lgrep_curbuf<CR>", "Live grep curbuf"},
     {"<leader>sv", "<CMD>FzfLua grep_visual<CR>", "Search visual"},
+    {"<leader><leader>b", "<CMD>FzfLua buffers<CR>", "Buffers"},
   },
   after = function ()
     require("fzf-lua").setup({})

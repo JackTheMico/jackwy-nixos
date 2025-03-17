@@ -5,103 +5,82 @@
 
 -- also shut up I dont care
 ---@diagnostic disable-next-line: invisible
-require("snacks").bigfile.setup()
+require('snacks').bigfile.setup()
+---@diagnostic disable-next-line: duplicate-set-field
+vim.notify = function(msg, level, o)
+  vim.notify = Snacks.notifier.notify
+  return Snacks.notifier.notify(msg, level, o)
+end
+vim.keymap.set({ 'n' }, '<Esc>', function() Snacks.notifier.hide() end, { desc = 'dismiss notify popup' })
 
 return {
-	{
-		"snacks.nvim",
-		for_cat = "general",
-		keys = {
-			{
-				"<c-\\>",
-				function()
-					Snacks.terminal()
-				end,
-				mode = { "n" },
-				desc = "open snacks terminal",
-			},
-			{
-				"<leader>gg",
-				function()
-					Snacks.lazygit.open()
-				end,
-				mode = { "n" },
-				desc = "LazyGit",
-			},
-			{
-				"<leader>gc",
-				function()
-					Snacks.lazygit.log()
-				end,
-				mode = { "n" },
-				desc = "Lazy[G]it [C]ommit log",
-			},
-			{
-				"<leader>gl",
-				function()
-					Snacks.gitbrowse.open()
-				end,
-				mode = { "n" },
-				desc = "[G]oto git [L]ink",
-			},
-		},
-		event = { "DeferredUIEnter" },
-		after = function(_)
-			-- NOTE: It is faster when you comment them out
-			-- rather than disabling them.
-			-- for some reason, they are still required
-			-- when you do { enabled = false }
-			Snacks.setup({
-				-- dashboard = { enabled = true, },
-				-- debug = { enabled = true, },
-				-- bufdelete = { enabled = true, },
-				-- dim = { enabled = true, },
-				-- explorer = { enabled = true, },
-				-- quickfile = { enabled = true, },
-				-- bigfile = { enabled = true, },
-				-- input = { enabled = true, },
-				-- scratch = { enabled = true, },
-				-- layout = { enabled = true, },
-				-- zen = { enabled = true, },
-				-- scroll = { enabled = true, },
-				-- notifier = { enabled = true, },
-				-- notify = { enabled = true, },
-				-- win = { enabled = true, },
-				-- picker = { enabled = true, },
-				-- profiler = { enabled = true, },
-				-- toggle = { enabled = true, },
-				-- rename = { enabled = true, },
-				-- words = { enabled = true, },
+  {
+    "snacks.nvim",
+    for_cat = "general",
+    keys = {
+      {'<c-\\>', function() Snacks.terminal() end, mode = {'n'}, desc = 'open snacks terminal' },
+      {"<leader>_", function() Snacks.lazygit.open() end, mode = {"n"}, desc = 'LazyGit' },
+      {"<leader>gc", function() Snacks.lazygit.log() end, mode = {"n"}, desc = 'Lazy[G]it [C]ommit log' },
+      {"<leader>gl", function() Snacks.gitbrowse.open() end, mode = {"n"}, desc = '[G]oto git [L]ink' },
+      {"<leader>e", function() Snacks.explorer() end, mode = {"n"}, desc = 'Explorer' },
+      {"<leader>sM", function() Snacks.notifier.show_history() end, mode = {"n"}, desc = '[S]earch [M]essages' },
+    },
+    event = { 'DeferredUIEnter' },
+    after = function(_)
+      -- NOTE: It is faster when you comment them out
+      -- rather than disabling them.
+      -- for some reason, they are still required
+      -- when you do { enabled = false }
+      Snacks.setup({
+        -- dashboard = {},
+        -- debug = {},
+        -- bufdelete = {},
+        -- dim = {},
+        explorer = {},
+        -- quickfile = {},
+        -- bigfile = {},
+        -- input = {},
+        -- scratch = {},
+        -- layout = {},
+        -- zen = {},
+        -- scroll = {},
+        -- notifier = {},
+        -- notify = {},
+        -- win = {},
+        picker = {},
+        -- profiler = {},
+        -- toggle = {},
+        -- rename = {},
+        -- words = {},
 
-				gitbrowse = { enabled = true },
-				lazygit = { enabled = true },
-				git = { enabled = true },
-				terminal = { enabled = true },
-				scope = { enabled = true },
-				indent = {
-					enabled = true,
-					scope = {
-						hl = "Hlargs",
-					},
-					chunk = {
-						-- enabled = true,
-						hl = "Hlargs",
-					},
-				},
-				statuscolumn = {
-					left = { "mark", "git" }, -- priority of signs on the left (high to low)
-					right = { "sign", "fold" }, -- priority of signs on the right (high to low)
-					folds = {
-						open = false, -- show open fold icons
-						git_hl = false, -- use Git Signs hl for fold icons
-					},
-					git = {
-						-- patterns to match Git signs
-						patterns = { "GitSign", "MiniDiffSign" },
-					},
-					refresh = 50, -- refresh at most every 50ms
-				},
-			})
-		end,
-	},
+        gitbrowse = {},
+        lazygit = {},
+        git = {},
+        terminal = {},
+        scope = {},
+        indent = {
+          scope = {
+            hl = 'Hlargs',
+          },
+          chunk = {
+            -- enabled = true,
+            hl = 'Hlargs',
+          }
+        },
+        statuscolumn = {
+          left = { "mark", "git" }, -- priority of signs on the left (high to low)
+          right = { "sign", "fold" }, -- priority of signs on the right (high to low)
+          folds = {
+            open = false, -- show open fold icons
+            git_hl = false, -- use Git Signs hl for fold icons
+          },
+          git = {
+            -- patterns to match Git signs
+            patterns = { "GitSign", "MiniDiffSign" },
+          },
+          refresh = 50, -- refresh at most every 50ms
+        },
+      })
+    end,
+  }
 }

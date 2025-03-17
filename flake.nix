@@ -39,6 +39,10 @@
       url = "github:m-demare/hlargs.nvim";
       flake = false;
     };
+    plugins-lzextras = {
+      url = "github:BirdeeHub/lzextras";
+      flake = false;
+    };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # You can access packages and modules from different nixpkgs revs
