@@ -14,6 +14,7 @@ in {
       brightnessctl
       clash-verge-rev
       clipse
+      cachix
       dunst
       fd
       just
