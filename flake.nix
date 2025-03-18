@@ -30,19 +30,19 @@
     };
 
     # nixCats
-    nixCats.url = "github:BirdeeHub/nixCats-nvim";
-    plugins-houdini = {
-      url = "github:TheBlob42/houdini.nvim";
-      flake = false;
-    };
-    "plugins-hlargs" = {
-      url = "github:m-demare/hlargs.nvim";
-      flake = false;
-    };
-    plugins-lzextras = {
-      url = "github:BirdeeHub/lzextras";
-      flake = false;
-    };
+    # nixCats.url = "github:BirdeeHub/nixCats-nvim";
+    # plugins-houdini = {
+    #   url = "github:TheBlob42/houdini.nvim";
+    #   flake = false;
+    # };
+    # "plugins-hlargs" = {
+    #   url = "github:m-demare/hlargs.nvim";
+    #   flake = false;
+    # };
+    # plugins-lzextras = {
+    #   url = "github:BirdeeHub/lzextras";
+    #   flake = false;
+    # };
 
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     # You can access packages and modules from different nixpkgs revs
@@ -59,119 +59,125 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, catppuccin-hyprland
-    , catppuccin-hyprlock, ... }@inputs:
-    let
-      inherit (self) outputs;
-      # Supported systems for your flake packages, shell, etc.
-      systems = [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-      userName = "jackwenyoung";
-      gitName = "Jack Wenyoung";
-      gitEmail = "dlwxxxdlw@gmail.com";
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in {
-      # Your custom packages
-      # Accessible through 'nix build', 'nix shell', etc
-      packages =
-        forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
-      formatter =
-        forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    sops-nix,
+    catppuccin-hyprland,
+    catppuccin-hyprlock,
+    ...
+  } @ inputs: let
+    inherit (self) outputs;
+    # Supported systems for your flake packages, shell, etc.
+    systems = [
+      "aarch64-linux"
+      "i686-linux"
+      "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
+    ];
+    userName = "jackwenyoung";
+    gitName = "Jack Wenyoung";
+    gitEmail = "dlwxxxdlw@gmail.com";
+    # This is a function that generates an attribute by calling a function you
+    # pass to it, with each system as an argument
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
+    # Your custom packages
+    # Accessible through 'nix build', 'nix shell', etc
+    packages =
+      forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
+    # Formatter for your nix files, available through 'nix fmt'
+    # Other options beside 'alejandra' include 'nixpkgs-fmt'
+    formatter =
+      forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
-      # Your custom packages and modifications, exported as overlays
-      overlays = import ./overlays { inherit inputs; };
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules/nixos;
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home-manager;
-      # TODO: My nixCats, will move to a proper place after refactor the repo like Birdeehub with flake-parts
-      jackwy-nixCats = import ./modules/nixCats { inherit inputs;};
+    # Your custom packages and modifications, exported as overlays
+    overlays = import ./overlays {inherit inputs;};
+    # Reusable nixos modules you might want to export
+    # These are usually stuff you would upstream into nixpkgs
+    nixosModules = import ./modules/nixos;
+    # Reusable home-manager modules you might want to export
+    # These are usually stuff you would upstream into home-manager
+    homeManagerModules = import ./modules/home-manager;
 
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        nixos-jackwy-laptop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs userName gitName gitEmail; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./hosts/laptop/configuration.nix
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useUserPackages = true;
-              home-manager.users.${userName} =
-                import ./home-manager/jackwy/nixos-jackwy-laptop.nix;
-              home-manager.backupFileExtension = "backup";
+    # I'm suck at loading everything with Lua because I got used to Lazyvim
+    # I found nvf is more suitable to me, I'll just use it since I was laid-off and there's nothing to code now.
+    # jackwy-nixCats = import ./modules/nixCats { inherit inputs;};
 
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-              home-manager.extraSpecialArgs = {
-                inherit inputs outputs userName gitName gitEmail;
-              };
-            }
-          ];
-        };
-	nixos-jackwy-desktop = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs userName gitName gitEmail; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./hosts/desktop/configuration.nix
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useUserPackages = true;
-              home-manager.users.${userName} =
-                import ./home-manager/jackwy/nixos-jackwy-desktop.nix;
-              home-manager.backupFileExtension = "backup";
+    # NixOS configuration entrypoint
+    # Available through 'nixos-rebuild --flake .#your-hostname'
+    nixosConfigurations = {
+      nixos-jackwy-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs userName gitName gitEmail;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/laptop/configuration.nix
+          sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.users.${userName} =
+              import ./home-manager/jackwy/nixos-jackwy-laptop.nix;
+            home-manager.backupFileExtension = "backup";
 
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-              home-manager.extraSpecialArgs = {
-                inherit inputs outputs userName gitName gitEmail;
-              };
-            }
-          ];
-	};
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+            home-manager.extraSpecialArgs = {
+              inherit inputs outputs userName gitName gitEmail;
+            };
+          }
+        ];
       };
+      nixos-jackwy-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs userName gitName gitEmail;};
+        modules = [
+          # > Our main nixos configuration file <
+          ./hosts/desktop/configuration.nix
+          sops-nix.nixosModules.sops
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useUserPackages = true;
+            home-manager.users.${userName} =
+              import ./home-manager/jackwy/nixos-jackwy-desktop.nix;
+            home-manager.backupFileExtension = "backup";
 
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
-      homeConfigurations = {
-        "${userName}@nixos-jackwy-laptop" =
-          home-manager.lib.homeManagerConfiguration {
-            pkgs =
-              nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-            extraSpecialArgs = {
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+            home-manager.extraSpecialArgs = {
               inherit inputs outputs userName gitName gitEmail;
             };
-            modules = [
-              # > Our main home-manager configuration file <
-              ./home-manager/jackwy/nixos-jackwy-laptop.nix
-            ];
-          };
-        "${userName}@nixos-jackwy-desktop" =
-          home-manager.lib.homeManagerConfiguration {
-            pkgs =
-              nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-            extraSpecialArgs = {
-              inherit inputs outputs userName gitName gitEmail;
-            };
-            modules = [
-              # > Our main home-manager configuration file <
-              ./home-manager/jackwy/nixos-jackwy-desktop.nix
-            ];
+          }
+        ];
+      };
+    };
+
+    # Standalone home-manager configuration entrypoint
+    # Available through 'home-manager --flake .#your-username@your-hostname'
+    homeConfigurations = {
+      "${userName}@nixos-jackwy-laptop" = home-manager.lib.homeManagerConfiguration {
+        pkgs =
+          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {
+          inherit inputs outputs userName gitName gitEmail;
         };
-     };
+        modules = [
+          # > Our main home-manager configuration file <
+          ./home-manager/jackwy/nixos-jackwy-laptop.nix
+        ];
+      };
+      "${userName}@nixos-jackwy-desktop" = home-manager.lib.homeManagerConfiguration {
+        pkgs =
+          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = {
+          inherit inputs outputs userName gitName gitEmail;
+        };
+        modules = [
+          # > Our main home-manager configuration file <
+          ./home-manager/jackwy/nixos-jackwy-desktop.nix
+        ];
+      };
+    };
   };
 }

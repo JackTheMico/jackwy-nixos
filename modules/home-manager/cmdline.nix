@@ -1,6 +1,10 @@
-{moduleNameSpace, ...}: {pkgs, config, lib,...}:
-with lib;
-let
+{moduleNameSpace, ...}: {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.${moduleNameSpace}.cmdline;
 in {
   options.${moduleNameSpace}.cmdline = {
@@ -21,7 +25,6 @@ in {
       gh
       ghostty
       lazygit
-      neovim
       nvd # Nix/NixOS package version diff tool
       nushell
       starship
@@ -51,7 +54,7 @@ in {
           update_check_interval = 0;
         };
       };
-      starship = { enable = true; };
+      starship = {enable = true;};
       fish = {
         enable = true;
         interactiveShellInit = ''

@@ -124,21 +124,6 @@
         "url": "ssh://git@github.com/JackTheMico/jackwy-secrets.git"
       }
     },
-    "nixCats": {
-      "locked": {
-        "lastModified": 1742214271,
-        "narHash": "sha256-8CH+MOGzv02sW61+SEHR76l3ykTgKSe/hKMjDOJPaCo=",
-        "owner": "BirdeeHub",
-        "repo": "nixCats-nvim",
-        "rev": "1af3c6e936d1bfb68ae5840d5df76b8c8d0309b6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "BirdeeHub",
-        "repo": "nixCats-nvim",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1742136038,
@@ -193,54 +178,6 @@
         "type": "github"
       }
     },
-    "plugins-hlargs": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735928893,
-        "narHash": "sha256-HIQrwlOP/iQoNpH7ETusb7PMaGKrkOrhHlNdQ+fYeCk=",
-        "owner": "m-demare",
-        "repo": "hlargs.nvim",
-        "rev": "a5a7fdacc0ac2f7ca9d241e0e059cb85f0e733bc",
-        "type": "github"
-      },
-      "original": {
-        "owner": "m-demare",
-        "repo": "hlargs.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-houdini": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1720213920,
-        "narHash": "sha256-diXdGip0lb7axIOWhXPn0A618g4Ijr4NMyprS8Ed1xY=",
-        "owner": "TheBlob42",
-        "repo": "houdini.nvim",
-        "rev": "1b7ec0a713a2aa9965848d8b93f66dc93716fd1c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "TheBlob42",
-        "repo": "houdini.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-lzextras": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1742124263,
-        "narHash": "sha256-mzTCEoKZqIQvo6NAoYkPqpFVWs56TiOegCYUk2Pdh0Y=",
-        "owner": "BirdeeHub",
-        "repo": "lzextras",
-        "rev": "e0965773c2a9b73d359a96e5008b5c7e05b47a45",
-        "type": "github"
-      },
-      "original": {
-        "owner": "BirdeeHub",
-        "repo": "lzextras",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "catppuccin-hyprland": "catppuccin-hyprland",
@@ -249,13 +186,9 @@
         "catppuccin-waybar": "catppuccin-waybar",
         "home-manager": "home-manager",
         "jackwy-secrets": "jackwy-secrets",
-        "nixCats": "nixCats",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
-        "plugins-hlargs": "plugins-hlargs",
-        "plugins-houdini": "plugins-houdini",
-        "plugins-lzextras": "plugins-lzextras",
         "sops-nix": "sops-nix"
       }
     },

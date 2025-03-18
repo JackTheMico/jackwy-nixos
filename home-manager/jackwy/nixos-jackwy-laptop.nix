@@ -1,6 +1,16 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ inputs, outputs, userName, gitName, gitEmail, lib, config, pkgs, ... }: {
+{
+  inputs,
+  outputs,
+  userName,
+  gitName,
+  gitEmail,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   # You can import other home-manager modules here
   imports = [
     # Sops home-manager module
@@ -19,7 +29,6 @@
     outputs.homeManagerModules.qutebrowser
     outputs.homeManagerModules.sql
     outputs.homeManagerModules.hack
-    outputs.jackwy-nixCats.homeModules.default
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -40,14 +49,14 @@
   };
   jackwyHMMods.ssh = {
     enable = true;
-    githubIdentityFiles = [ "~/.ssh/id_nixos_jackwy_laptop" ];
+    githubIdentityFiles = ["~/.ssh/id_nixos_jackwy_laptop"];
   };
   jackwyHMMods.sopsnix.enable = true;
   jackwyHMMods.qutebrowser.enable = true;
-  jackwyHMMods.ncat = {
-    enable = true;
-    packageNames = [ "ncat" "tcat" ];
-  };
+  # jackwyHMMods.ncat = {
+  #   enable = true;
+  #   packageNames = ["ncat" "tcat"];
+  # };
 
   nixpkgs = {
     # You can add overlays here
@@ -93,7 +102,6 @@
     grc
     gh
     ghostty
-    neovim
     fastfetch
     nvd
     nushell
@@ -124,15 +132,14 @@
         fi
       '';
     };
-    firefox.profiles.${userName}.extensions =
-      with pkgs.nur.repos.rycee.firefox-addons; [
-        swithyomega
-        tampermonkey
-        darkreader
-        tree-style-tab
-        immersive-translate
-        #NOTE: Install Toby manually.
-      ];
+    firefox.profiles.${userName}.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      swithyomega
+      tampermonkey
+      darkreader
+      tree-style-tab
+      immersive-translate
+      #NOTE: Install Toby manually.
+    ];
     git = {
       enable = true;
       userName = gitName;
@@ -169,7 +176,7 @@
         update_check_interval = 0;
       };
     };
-    starship = { enable = true; };
+    starship = {enable = true;};
     fish = {
       enable = true;
       interactiveShellInit = ''

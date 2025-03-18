@@ -1,21 +1,25 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, outputs, pkgs, userName, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # cachix
-      ./cachix.nix
-      outputs.nixosModules.network
-      outputs.nixosModules.vcs
-      outputs.nixosModules.fontProfiles
-      outputs.nixosModules.hack
-      outputs.nixosModules.basic
-    ];
+  config,
+  lib,
+  outputs,
+  pkgs,
+  userName,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # cachix
+    ./cachix.nix
+    outputs.nixosModules.network
+    outputs.nixosModules.vcs
+    outputs.nixosModules.fontProfiles
+    outputs.nixosModules.hack
+    outputs.nixosModules.basic
+  ];
 
   jackwySystemMods.fontProfiles.enable = true;
   jackwySystemMods.network.enable = true;
@@ -37,15 +41,14 @@
     hostName = "nixos-jackwy-desktop";
     proxy.default = "http://127.0.0.1:7897";
     proxy.noProxy = "127.0.0.1,localhost,.localdomain";
-    wireless = { enable = false; };
-    networkmanager = { enable = true; };
+    wireless = {enable = false;};
+    networkmanager = {enable = true;};
   };
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
 
   nixpkgs.config.allowUnfree = true;
-
 
   # Select internationalisation properties.
   i18n = {
@@ -55,16 +58,16 @@
       enable = true;
       fcitx5 = {
         waylandFrontend = true;
-	addons = with pkgs; [
-	  fcitx5-chinese-addons
-	  fcitx5-nord
-	];
+        addons = with pkgs; [
+          fcitx5-chinese-addons
+          fcitx5-nord
+        ];
       };
     };
   };
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    EDITOR = "ncat";
+    EDITOR = "vim";
   };
 
   # Enable the X11 windowing system.
@@ -86,14 +89,13 @@
   };
   services.blueman.enable = true;
 
-
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jackwenyoung = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "input" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "input"]; # Enable ‘sudo’ for the user.
   };
   programs = {
     nh = {
@@ -101,7 +103,7 @@
       flake = "/home/${userName}/codes/jackwy/jackwy-nixos";
       clean = {
         enable = true;
-	extraArgs = "--keep 5 --keep-since 3d";
+        extraArgs = "--keep 5 --keep-since 3d";
       };
     };
     firefox.enable = true;
@@ -117,9 +119,8 @@
     };
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   nix.optimise.automatic = true;
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -127,7 +128,6 @@
   #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #   wget
   # ];
-
 
   # List services that you want to enable:
 
@@ -163,6 +163,4 @@
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
   system.stateVersion = "24.11"; # Did you read the comment?
-
 }
-
