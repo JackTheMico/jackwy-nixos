@@ -8,6 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # cachix
+      ./cachix.nix
       outputs.nixosModules.network
       outputs.nixosModules.vcs
       outputs.nixosModules.fontProfiles
