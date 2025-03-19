@@ -42,7 +42,7 @@
   jackwyHMMods.cmdline.enable = true;
   jackwyHMMods.gui.enable = true;
   jackwyHMMods.scrcpy.enable = true;
-  jackwyHMMods.gh.enable = false;
+  jackwyHMMods.gh.enable = true;
   jackwyHMMods.sql.enable = true;
   jackwyHMMods.hack.enable = false;
   jackwyHMMods.rofi.enable = true;
@@ -58,7 +58,7 @@
     enable = true;
     githubIdentityFiles = ["~/.ssh/id_nixos_jackwy_desktop"];
   };
-  jackwyHMMods.sopsnix.enable = false;
+  jackwyHMMods.sopsnix.enable = true;
   jackwyHMMods.qutebrowser.enable = true;
   # jackwyHMMods.ncat = {
   #   enable = true;
