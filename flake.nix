@@ -28,6 +28,11 @@
       url = "github:catppuccin/rofi";
       flake = false;
     };
+    # jackwy-nvf
+    jackwy-nvf = {
+      url = "git+ssh://git@github.com/JackTheMico/jackwy-nvf.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # nixCats
     # nixCats.url = "github:BirdeeHub/nixCats-nvim";
@@ -77,6 +82,7 @@
       "aarch64-darwin"
       "x86_64-darwin"
     ];
+    system = "x86_64-linux";
     userName = "jackwenyoung";
     gitName = "Jack Wenyoung";
     gitEmail = "dlwxxxdlw@gmail.com";
@@ -97,10 +103,10 @@
     overlays = import ./overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos;
+    nixosModules = import ./modules/nixos {inherit inputs system;};
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
-    homeManagerModules = import ./modules/home-manager;
+    homeManagerModules = import ./modules/home-manager {inherit inputs system;};
 
     # I'm suck at loading everything with Lua because I got used to Lazyvim
     # I found nvf is more suitable to me, I'll just use it since I was laid-off and there's nothing to code now.
@@ -110,7 +116,7 @@
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
       nixos-jackwy-laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs userName gitName gitEmail;};
+        specialArgs = {inherit system inputs outputs userName gitName gitEmail;};
         modules = [
           # > Our main nixos configuration file <
           ./hosts/laptop/configuration.nix
@@ -131,7 +137,7 @@
         ];
       };
       nixos-jackwy-desktop = nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs outputs userName gitName gitEmail;};
+        specialArgs = {inherit system inputs outputs userName gitName gitEmail;};
         modules = [
           # > Our main nixos configuration file <
           ./hosts/desktop/configuration.nix
@@ -158,7 +164,7 @@
     homeConfigurations = {
       "${userName}@nixos-jackwy-laptop" = home-manager.lib.homeManagerConfiguration {
         pkgs =
-          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs outputs userName gitName gitEmail;
         };
@@ -169,7 +175,7 @@
       };
       "${userName}@nixos-jackwy-desktop" = home-manager.lib.homeManagerConfiguration {
         pkgs =
-          nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+          nixpkgs.legacyPackages.${system}; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs outputs userName gitName gitEmail;
         };

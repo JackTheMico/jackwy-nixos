@@ -1,33 +1,44 @@
-{moduleNameSpace, ...}:{pkgs, lib, config, ...}:
-with lib;
-let
+{
+  moduleNameSpace,
+  inputs,
+  system,
+  ...
+}: {
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.${moduleNameSpace}.basic;
 in {
   options.${moduleNameSpace}.basic = {
     enable = mkEnableOption "System Basic";
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      age
-      asciinema
-      asciinema-agg
-      brightnessctl
-      clash-verge-rev
-      clipse
-      cachix
-      dunst
-      fd
-      just
-      nautilus
-      nautilus-open-any-terminal
-      vscode
-      wget
-      wl-clipboard
-      sops
-      ripgrep
-      bash
-      kitty
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        age
+        asciinema
+        asciinema-agg
+        brightnessctl
+        clash-verge-rev
+        clipse
+        cachix
+        dunst
+        fd
+        just
+        nautilus
+        nautilus-open-any-terminal
+        vscode
+        wget
+        wl-clipboard
+        sops
+        ripgrep
+        bash
+        kitty
+      ]
+      ++ [inputs.jackwy-nvf.packages.${system}.default];
     programs = {
       clash-verge = {
         enable = true;
