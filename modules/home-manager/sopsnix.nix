@@ -36,7 +36,12 @@ in {
               oauth_token: "${config.sops.placeholder.gh_token}"
               user: JackTheMico
           '';
+        "nix.conf".content = ''
+          access-tokens = github.com=${config.sops.placeholder.gh_token}
+        '';
       };
     };
+    xdg.configFile."gh/hosts.yml".source = config.lib.file.mkOutOfStoreSymlink "${config.sops.templates."hosts.yml".path}";
+    xdg.configFile."nix/nix.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.sops.templates."nix.conf".path}";
   };
 }
