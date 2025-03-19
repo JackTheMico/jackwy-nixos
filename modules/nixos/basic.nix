@@ -22,6 +22,7 @@ in {
         asciinema
         asciinema-agg
         brightnessctl
+        bash
         clash-verge-rev
         clipse
         cachix
@@ -35,8 +36,8 @@ in {
         wl-clipboard
         sops
         ripgrep
-        bash
         kitty
+        ueberzug # image-nvim requires
       ]
       ++ [inputs.jackwy-nvf.packages.${system}.default];
     programs = {
