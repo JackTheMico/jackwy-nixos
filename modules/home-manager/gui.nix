@@ -1,6 +1,10 @@
-{moduleNameSpace, ...}: {pkgs, config, lib,...}:
-with lib;
-let
+{moduleNameSpace, ...}: {
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.${moduleNameSpace}.gui;
 in {
   options.${moduleNameSpace}.gui = {
@@ -12,6 +16,7 @@ in {
       discord
       keepassxc
       spotify
+      zoom-us
     ];
   };
 }
