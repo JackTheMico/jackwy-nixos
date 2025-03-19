@@ -47,10 +47,15 @@ in {
       };
       kitty = {
         enable = true;
-        font.name = "Hack";
+        font.name = "Maple Mono NF";
+        themeFile = "Dracula";
+        shellIntegration = {
+          enableFishIntegration = true;
+          enableBashIntegration = true;
+        };
         settings = {
           scrollback_lines = 10000;
-          enable_audio_bell = false;
+          enable_audio_bell = true;
           update_check_interval = 0;
         };
       };

@@ -13,7 +13,7 @@ in {
     ];
     programs.wezterm = {
       enable = true;
-      extraConfig = builtins.readFile ./wezterm.lua;
+      extraConfig = config.lib.file.mkOutOfStoreSymlink ./wezterm.lua;
     };
   };
 }
