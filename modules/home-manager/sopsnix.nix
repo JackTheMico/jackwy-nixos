@@ -20,6 +20,9 @@ in {
         "ssh_host_ed25519_key/private/nixos_jackwy_laptop" = {
           path = "/home/jackwenyoung/.ssh/id_nixos_jackwy_laptop";
         };
+        "keepass_keyfile" = {
+          path = "/home/jackwenyoung/.config/keepassxc/keepass_keyfile";
+        };
         "gh_token" = {};
       };
       templates = {

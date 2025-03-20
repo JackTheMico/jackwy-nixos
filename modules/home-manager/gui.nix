@@ -22,6 +22,5 @@ in {
       spotify
       zoom-us
     ];
-    xdg.configFile."keepassxc/keepass_keyfile".source = "${inputs.jackwy-secrets}/keepass_keyfile";
   };
 }
