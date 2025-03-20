@@ -2,7 +2,7 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {inputs, ...}: let
   moduleNameSpace = "jackwyHMMods";
-  args = {inherit moduleNameSpace;};
+  args = {inherit moduleNameSpace inputs;};
 in {
   # List your module files here
   obsidian = import ./obsidian.nix args;

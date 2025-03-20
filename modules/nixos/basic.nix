@@ -19,6 +19,7 @@ in {
     environment.systemPackages = with pkgs;
       [
         age
+        alist
         asciinema
         asciinema-agg
         brightnessctl
@@ -29,8 +30,6 @@ in {
         dunst
         fd
         just
-        nautilus
-        nautilus-open-any-terminal
         vscode
         wget
         wl-clipboard
