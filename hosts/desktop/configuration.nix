@@ -19,13 +19,16 @@
     outputs.nixosModules.fontProfiles
     outputs.nixosModules.hack
     outputs.nixosModules.basic
+    outputs.nixosModules.nutstore
   ];
-
-  jackwySystemMods.fontProfiles.enable = true;
-  jackwySystemMods.network.enable = true;
-  jackwySystemMods.vcs.enable = true;
-  jackwySystemMods.basic.enable = true;
-  jackwySystemMods.hack.enable = false;
+  jackwySystemMods = {
+    fontProfiles.enable = true;
+    network.enable = true;
+    vcs.enable = true;
+    basic.enable = true;
+    nutstore.enable = true;
+    hack.enable = false;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -95,7 +98,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jackwenyoung = {
     isNormalUser = true;
-    extraGroups = ["wheel" "networkmanager" "input"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "networkmanager" "input" "davfs2"]; # Enable ‘sudo’ for the user.
   };
   programs = {
     nh = {
