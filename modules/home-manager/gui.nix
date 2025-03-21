@@ -1,8 +1,4 @@
-{
-  moduleNameSpace,
-  inputs,
-  ...
-}: {
+{moduleNameSpace, ...}: {
   pkgs,
   config,
   lib,
@@ -12,7 +8,7 @@ with lib; let
   cfg = config.${moduleNameSpace}.gui;
 in {
   options.${moduleNameSpace}.gui = {
-    enable = mkEnableOption "GUI Setup";
+    enable = mkEnableOption "User GUI Enable";
   };
 
   config = mkIf cfg.enable {
@@ -20,6 +16,9 @@ in {
       discord
       keepassxc
       spotify
+      steam
+      qq
+      wechat-uos
       zoom-us
     ];
   };

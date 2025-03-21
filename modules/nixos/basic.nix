@@ -29,6 +29,7 @@ in {
         dunst
         fd
         kitty
+        lua
         just
         # (python312.withPackages (p:
         #   with p; [
