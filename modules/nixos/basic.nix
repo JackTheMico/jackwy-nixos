@@ -19,7 +19,6 @@ in {
     environment.systemPackages = with pkgs;
       [
         age
-        alist
         asciinema
         asciinema-agg
         brightnessctl
@@ -29,13 +28,18 @@ in {
         cachix
         dunst
         fd
+        kitty
         just
+        # (python312.withPackages (p:
+        #   with p; [
+        #     pip
+        #     pynacl
+        #   ]))
+        sops
         vscode
         wget
         wl-clipboard
-        sops
         ripgrep
-        kitty
         ueberzug # image-nvim requires
       ]
       ++ [inputs.jackwy-nvf.packages.${system}.default];
