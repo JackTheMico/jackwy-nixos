@@ -17,6 +17,7 @@ in {
       bash
       chezmoi
       delta
+      devenv
       fzf
       fish
       fastfetch
@@ -27,6 +28,7 @@ in {
       lazygit
       nvd # Nix/NixOS package version diff tool
       nushell
+      neovide
       starship
       yazi
       thefuck
