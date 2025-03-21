@@ -36,23 +36,25 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ];
-  jackwyHMMods.gh.enable = true;
-  jackwyHMMods.sql.enable = true;
-  jackwyHMMods.hack.enable = true;
-  jackwyHMMods.rofi.enable = true;
-  jackwyHMMods.wezterm.enable = true;
-  jackwyHMMods.obsidian.enable = true;
-  jackwyHMMods.chromium.enable = true;
-  jackwyHMMods.hyprland = {
-    enable = true;
-    autoEnter = true;
+  jackwyHMMods = {
+    gh.enable = true;
+    sql.enable = true;
+    hack.enable = false;
+    rofi.enable = true;
+    wezterm.enable = true;
+    obsidian.enable = true;
+    chromium.enable = true;
+    hyprland = {
+      enable = true;
+      autoEnter = true;
+    };
+    ssh = {
+      enable = true;
+      githubIdentityFiles = ["~/.ssh/id_nixos_jackwy_laptop"];
+    };
+    sopsnix.enable = true;
+    qutebrowser.enable = true;
   };
-  jackwyHMMods.ssh = {
-    enable = true;
-    githubIdentityFiles = ["~/.ssh/id_nixos_jackwy_laptop"];
-  };
-  jackwyHMMods.sopsnix.enable = true;
-  jackwyHMMods.qutebrowser.enable = true;
   # jackwyHMMods.ncat = {
   #   enable = true;
   #   packageNames = ["ncat" "tcat"];

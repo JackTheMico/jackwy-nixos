@@ -39,27 +39,29 @@
     # You can also split up your configuration and import pieces of it here:
     # ./nvim.nix
   ];
-  jackwyHMMods.cmdline.enable = true;
-  jackwyHMMods.gui.enable = true;
-  jackwyHMMods.scrcpy.enable = true;
-  jackwyHMMods.gh.enable = true;
-  jackwyHMMods.sql.enable = true;
-  jackwyHMMods.hack.enable = false;
-  jackwyHMMods.rofi.enable = true;
-  jackwyHMMods.wezterm.enable = true;
-  jackwyHMMods.obsidian.enable = true;
-  jackwyHMMods.chromium.enable = true;
-  jackwyHMMods.hyprland = {
-    enable = true;
-    autoEnter = false;
-    monitor = ["DP-2, 1920x1080@60, 0x0, 1" "DP-3, 2560x1440@60, 1920x0, 1"];
+  jackwyHMMods = {
+    cmdline.enable = true;
+    gui.enable = true;
+    scrcpy.enable = true;
+    gh.enable = true;
+    sql.enable = true;
+    hack.enable = false;
+    rofi.enable = true;
+    wezterm.enable = true;
+    obsidian.enable = true;
+    chromium.enable = true;
+    hyprland = {
+      enable = true;
+      autoEnter = false;
+      monitor = ["DP-2, 1920x1080@60, 0x0, 1" "DP-3, 2560x1440@60, 1920x0, 1"];
+    };
+    ssh = {
+      enable = true;
+      githubIdentityFiles = ["~/.ssh/id_nixos_jackwy_desktop"];
+    };
+    sopsnix.enable = true;
+    qutebrowser.enable = true;
   };
-  jackwyHMMods.ssh = {
-    enable = true;
-    githubIdentityFiles = ["~/.ssh/id_nixos_jackwy_desktop"];
-  };
-  jackwyHMMods.sopsnix.enable = true;
-  jackwyHMMods.qutebrowser.enable = true;
   # jackwyHMMods.ncat = {
   #   enable = true;
   #   packageNames = ["ncat" "tcat"];

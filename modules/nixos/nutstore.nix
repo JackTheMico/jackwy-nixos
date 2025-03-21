@@ -22,10 +22,6 @@ in {
         };
       };
     };
-    # environment.etc."davfs2/secrets" = {
-    #   mode = "0600";
-    #   source = pkgs.lib.file.mkOutOfStoreSymlink "${config.sops.templates."davfs2-secrets".path}";
-    # };
     services.davfs2 = {
       enable = true;
       settings = {

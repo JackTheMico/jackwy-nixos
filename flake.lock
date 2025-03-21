@@ -166,10 +166,10 @@
     "jackwy-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1742537387,
-        "narHash": "sha256-QxitYtmElxm/2xAVdcR3ZDpKhY55oUpuzD4sz7/Vdzc=",
+        "lastModified": 1742538696,
+        "narHash": "sha256-5klmjMQr+9jketqVsQtLDrQ5qlSntBr8eoX1jlQO+ow=",
         "ref": "main",
-        "rev": "dd84d1842220cfd8b4bf39c9f9a401555fbcae5a",
+        "rev": "72f5f357db939745a9f49d64b8f24dc85a542505",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/JackTheMico/jackwy-secrets.git"

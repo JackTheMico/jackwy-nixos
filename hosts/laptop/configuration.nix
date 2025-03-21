@@ -1,8 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-{ config, lib, outputs, pkgs, userName, ... }: {
-
+{
+  config,
+  lib,
+  outputs,
+  pkgs,
+  userName,
+  ...
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -12,12 +18,13 @@
     outputs.nixosModules.hack
     outputs.nixosModules.basic
   ];
-
-  jackwySystemMods.fontProfiles.enable = true;
-  jackwySystemMods.network.enable = true;
-  jackwySystemMods.vcs.enable = true;
-  jackwySystemMods.basic.enable = true;
-  jackwySystemMods.hack.enable = true;
+  jackwySystemMods = {
+    fontProfiles.enable = true;
+    network.enable = true;
+    vcs.enable = true;
+    basic.enable = true;
+    hack.enable = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -31,8 +38,8 @@
     hostName = "nixos-jackwy-laptop";
     proxy.default = "http://127.0.0.1:7897";
     proxy.noProxy = "127.0.0.1,localhost,.localdomain";
-    wireless = { enable = false; };
-    networkmanager = { enable = true; };
+    wireless = {enable = false;};
+    networkmanager = {enable = true;};
   };
 
   # Set your time zone.
@@ -69,7 +76,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -87,7 +93,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jackwenyoung = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "input" ]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "input"]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -117,7 +123,7 @@
     };
   };
   # Enable Flakes and Nix settings
-  nix.settings = { experimental-features = [ "nix-command" "flakes" ]; };
+  nix.settings = {experimental-features = ["nix-command" "flakes"];};
 
   # Storage Optimization
   nix.optimise.automatic = true;
