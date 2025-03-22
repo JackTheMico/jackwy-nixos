@@ -1,6 +1,10 @@
-{moduleNameSpace, ...}: {lib, pkgs, config, ...}:
-with lib; 
-let
+{moduleNameSpace, ...}: {
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+with lib; let
   cfg = config.${moduleNameSpace}.wezterm;
 in {
   options.${moduleNameSpace}.wezterm = {
@@ -8,7 +12,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs;[
+    home.packages = with pkgs; [
       wezterm
     ];
     programs.wezterm = {
