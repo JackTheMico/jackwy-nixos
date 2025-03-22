@@ -1,7 +1,12 @@
-{ moduleNameSpace, ... }:
-{ pkgs, lib, config, inputs, ... }:
-with lib;
-let cfg = config.${moduleNameSpace}.hyprland;
+{moduleNameSpace, ...}: {
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}:
+with lib; let
+  cfg = config.${moduleNameSpace}.hyprland;
 in {
   options.${moduleNameSpace}.hyprland = {
     enable = mkEnableOption "User hyprland";
@@ -16,13 +21,19 @@ in {
   config = mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       enable = true;
-      plugins = with pkgs.hyprlandPlugins; [ hyprexpo hyprspace hyprtrails ];
+      plugins = with pkgs.hyprlandPlugins; [hyprsplit];
       settings = {
         "$terminal" = "wezterm";
         "$fileManager" = "nautilus";
         "$menu" = "rofi -show drun";
         "$mod" = "SUPER";
-        exec-once = ["waybar" "clash-verge" "clipse -listen" "fcitx5"];
+        exec-once = ["waybar" "clash-verge" "clipse -listen" "fcitx5" "swww-daemon"];
+        plugin = {
+          hyprsplit = {
+            num_workspaces = 10;
+            persistent_workspaces = false;
+          };
+        };
         general = {
           gaps_in = 3;
           gaps_out = 16;
@@ -40,13 +51,12 @@ in {
           allow_tearing = false;
 
           layout = "dwindle";
-
         };
         dwindle = {
           pseudotile = true;
           preserve_split = true;
         };
-        master = { new_status = "master"; };
+        master = {new_status = "master";};
         bindm = [
           # Move/resize windows with mod + LMB/RMB and dragging
           "$mod, mouse:272, movewindow"
@@ -68,41 +78,54 @@ in {
           ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
           ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
         ];
-        bind = [
-          # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-          "$mod, return, exec, $terminal"
-          "$mod, Q, killactive"
-          "$mod, M, exit"
-          "$mod, E, exec, $fileManager"
-          "$mod, F, togglefloating"
-          "$mod, R, exec, $menu"
-          "$mod, P, pseudo, # dwindle"
-          "$mod, J, togglesplit, # dwindle"
-          # Move focus with mod + arrow keys
-          "$mod, left, movefocus, l"
-          "$mod, right, movefocus, r"
-          "$mod, up, movefocus, u"
-          "$mod, down, movefocus, d"
-          # Scroll through existing workspaces with mod + scroll
-          "$mod, mouse_down, workspace, e+1"
-          "$mod, mouse_up, workspace, e-1"
-          # Example special workspace (scratchpad)
-          "$mod, S, togglespecialworkspace, magic"
-          "$mod SHIFT, S, movetoworkspace, special:magic"
-          "$mod, 0, workspace, 10"
-          "$mod SHIFT, 0, movetoworkspace, 10"
-
-          # Clipse
-          "$mod, V, exec, kitty --class clipse -e clipse"
-        ] ++ (
-          # workspaces
-          # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
-          builtins.concatLists (builtins.genList (i:
-            let ws = i + 1;
-            in [
-              "$mod, ${toString (i + 1)}, workspace, ${toString ws}"
-              "$mod SHIFT, ${toString (i + 1)}, movetoworkspace, ${toString ws}"
-            ]) 9));
+        bind =
+          [
+            # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
+            "$mod, return, exec, $terminal"
+            "$mod, Q, killactive"
+            "$mod, M, exit"
+            "$mod, E, exec, $fileManager"
+            "$mod, F, togglefloating"
+            "$mod, R, exec, $menu"
+            "$mod, P, pseudo, # dwindle"
+            "$mod, J, togglesplit, # dwindle"
+            # Move focus with mod + arrow keys
+            "$mod, left, movefocus, l"
+            "$mod, right, movefocus, r"
+            "$mod, up, movefocus, u"
+            "$mod, down, movefocus, d"
+            # Scroll through existing workspaces with mod + scroll
+            "$mod, mouse_down, workspace, e+1"
+            "$mod, mouse_up, workspace, e-1"
+            # Example special workspace (scratchpad)
+            "$mod, S, togglespecialworkspace, magic"
+            "$mod SHIFT, S, movetoworkspace, special:magic"
+            "$mod, 0, split:workspace, 10"
+            "$mod SHIFT, 0, split:movetoworkspace, 10"
+            "$mod Alt, 0, split:movetoworkspacesilent, 10"
+            # hyprsplit
+            "$mod, D, split:swapactiveworkspaces, current +1"
+            "$mod, G, split:swapactiveworkspaces, current +1"
+            # Clipse
+            "$mod, V, exec, kitty --class clipse -e clipse"
+            # hyprshot
+            "$mod Shift, O, exec, hyprshot -m output -o ~/Pictures/hyprshot"
+            "$mod Shift, W, exec, hyprshot -m window -o ~/Pictures/hyprshot"
+            "$mod Shift, R, exec, hyprshot -m region -o ~/Pictures/hyprshot"
+            "$mod Shift, C, exec, hyprshot -m region --clipboard-only"
+          ]
+          ++ (
+            # workspaces
+            # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
+            builtins.concatLists (builtins.genList (i: let
+                ws = i + 1;
+              in [
+                "$mod, ${toString (i + 1)}, split:workspace, ${toString ws}"
+                "$mod SHIFT, ${toString (i + 1)}, split:movetoworkspace, ${toString ws}"
+                "$mod Alt, ${toString (i + 1)}, split:movetoworkspacesilent, ${toString ws}"
+              ])
+              9)
+          );
         monitor = cfg.monitor;
         env = [
           # Hint Electron apps to use Wayland
@@ -124,7 +147,7 @@ in {
           ++ (rulesForWindow "floating:0" ["noshadow"])
           ++ (rulesForWindow "class:(clipse)" ["float" "size 622 652" "stayfocused"]);
 
-        gestures = { workspace_swipe = true; };
+        gestures = {workspace_swipe = true;};
         animations = {
           enabled = true;
           bezier = [
@@ -174,22 +197,18 @@ in {
             passes = 1;
             vibrancy = 0.1696;
           };
-
         };
         input = {
           kb_layout = "us";
           follow_mouse = 1;
           kb_options = "ctrl:nocaps";
-          # touchpad = {
-          #   natural_scoll = true;
-          # };
         };
       };
     };
-    home.packages = with pkgs; [ waybar hyprshot swww hypridle ];
+    home.packages = with pkgs; [waybar hyprshot swww hypridle libnotify];
     programs = {
       hyprlock.enable = true;
-      waybar = { enable = true; };
+      waybar = {enable = true;};
       bash = mkIf cfg.autoEnter {
         enable = true;
         # NOTE: Start Hyprland after login
@@ -202,16 +221,12 @@ in {
     };
     services.hypridle.enable = true;
     xdg.configFile."hypr/hypridle.conf".source = ./hypridle.conf;
-    xdg.configFile."hypr/mocha.conf".source =
-      "${inputs.catppuccin-hyprland}/themes/mocha.conf";
-    xdg.configFile."hypr/hyprlock.conf".source =
-      "${inputs.catppuccin-hyprlock}/hyprlock.conf";
-    xdg.configFile."waybar/mocha.css".source =
-      "${inputs.catppuccin-waybar}/themes/mocha.css";
+    xdg.configFile."hypr/mocha.conf".source = "${inputs.catppuccin-hyprland}/themes/mocha.conf";
+    xdg.configFile."hypr/hyprlock.conf".source = "${inputs.catppuccin-hyprlock}/hyprlock.conf";
+    xdg.configFile."waybar/mocha.css".source = "${inputs.catppuccin-waybar}/themes/mocha.css";
     xdg.configFile."waybar/config.jsonc".source =
       config.lib.file.mkOutOfStoreSymlink ./config.jsonc;
     xdg.configFile."waybar/style.css".source =
       config.lib.file.mkOutOfStoreSymlink ./style.css;
   };
-
 }
