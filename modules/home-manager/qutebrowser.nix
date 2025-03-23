@@ -39,6 +39,7 @@ in {
         };
       };
       quickmarks = {
+        noogle = "https://noogle.dev/";
         noss = "https://search.nixos.org/packages";
         devenv = "https://devenv.sh/";
         gh = "https://github.com";
