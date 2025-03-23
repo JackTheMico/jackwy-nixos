@@ -26,6 +26,7 @@ in {
       gh
       ghostty
       lazygit
+      navi # Great cmd help tool
       nvd # Nix/NixOS package version diff tool
       nushell
       neovide
@@ -46,6 +47,11 @@ in {
             exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
           fi
         '';
+      };
+      navi = {
+        enable = true;
+        enableBashIntegration = true;
+        enableFishIntegration = true;
       };
       kitty = {
         enable = true;
@@ -84,15 +90,15 @@ in {
         plugins = [
           {
             name = "done";
-            src = pkgs.fishPlugins.done.src;
+            inherit (pkgs.fishPlugins.done) src;
           }
           {
             name = "grc";
-            src = pkgs.fishPlugins.grc.src;
+            inherit (pkgs.fishPlugins.grc) src;
           }
           {
             name = "fzf-fish";
-            src = pkgs.fishPlugins.fzf-fish.src;
+            inherit (pkgs.fishPlugins.fzf-fish) src;
           }
         ];
         shellAbbrs = {
@@ -105,6 +111,7 @@ in {
           lg = "lazygit";
           lj = "lazyjj";
           md = "mkdir";
+          ff = "fastfetch";
           jjbm = "jj bookmark s -r @- main";
           gpom = "git push -u origin main";
           czi = "chezmoi";
