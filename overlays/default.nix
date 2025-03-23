@@ -11,14 +11,14 @@
     # ...
     # });
 
-    qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
-      postFixup =
-        (oldAttrs.postFixup or "")
-        + ''
-          wrapProgram $out/bin/qutebrowser \
-            --set PYTHONPATH "${final.python312.withPackages (ps: [ps.pynacl])}/lib/python3.12/site-packages"
-        '';
-    });
+    # qutebrowser = prev.qutebrowser.overrideAttrs (oldAttrs: {
+    #   postFixup =
+    #     (oldAttrs.postFixup or "")
+    #     + ''
+    #       wrapProgram $out/bin/qutebrowser \
+    #         --set PYTHONPATH "${final.python312.withPackages (ps: [ps.pynacl])}/lib/python3.12/site-packages"
+    #     '';
+    # });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will

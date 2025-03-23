@@ -33,11 +33,6 @@
       url = "git+ssh://git@github.com/JackTheMico/jackwy-nvf.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # qute-keepassxc for password autofill with keepassxc
-    qute-keepassxc = {
-      url = "github:ususdei/qute-keepassxc";
-      flake = false;
-    };
 
     # nixCats
     # nixCats.url = "github:BirdeeHub/nixCats-nvim";
