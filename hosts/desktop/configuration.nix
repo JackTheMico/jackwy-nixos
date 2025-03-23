@@ -82,6 +82,7 @@
 
     # Enable CUPS to print documents.
     # services.printing.enable = true;
+    xserver.videoDrivers = ["nvidia"];
 
     # Enable sound.
     # hardware.pulseaudio.enable = true;

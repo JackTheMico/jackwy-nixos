@@ -23,9 +23,10 @@ in {
       # :open google qutebrowser
       searchEngines = {
         mt = "https://metaso.cn/?q={}";
-        g = "https://www.google.com/search?hl=en&q={}";
+        gg = "https://www.google.com/search?hl=en&q={}";
         nw = "https://wiki.nixos.org/index.php?search={}";
         ddg = "https://duckduckgo.com/?q={}";
+        gh = "https://github.com/search?q={}&type=repositories";
         DEFAULT = "https://metaso.cn/?q={}";
       };
       keyBindings = {
@@ -59,7 +60,9 @@ in {
         vb = "https://www.vulbox.com/";
         zh = "https://www.zhihu.com/";
         nvfo = "https://notashelf.github.io/nvf/options.html";
+        wqb = "https://platform.worldquantbrain.com/simulate";
         xzm = "https://www.xiezuocat.com/";
+        mt = "https://metaso.cn";
       };
       settings = {
         auto_save.session = true;
