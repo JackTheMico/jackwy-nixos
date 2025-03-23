@@ -74,6 +74,12 @@ in {
           enproxy = "set -xg ALL_PROXY http://localhost:7897 ; set -xg HTTP_PROXY http://localhost:7897 ; set -xg HTTPS_PROXY http://localhost:7897; echo 'Proxy Enabled'";
           deproxy = "set -e ALL_PROXY; set -e HTTPS_PROXY; set -e HTTP_PROXY; echo 'Proxy disabled'";
           gitignore = "curl -sL https://www.gitignore.io/api/$argv";
+          gitjackinit = ''
+            git config commit.gpgsign true
+            git config user.email "dlwxxxdlw@gmail.com"
+            git config user.name "Jack Wenyoung"
+            git config user.signKey "A30DF874D95E6029"
+          '';
         };
         plugins = [
           {
