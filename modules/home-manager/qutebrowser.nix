@@ -40,6 +40,7 @@ in {
       };
       quickmarks = {
         noss = "https://search.nixos.org/packages";
+        devenv = "https://devenv.sh/";
         gh = "https://github.com";
         hmos = "https://home-manager-options.extranix.com";
         yt = "https://www.youtube.com";

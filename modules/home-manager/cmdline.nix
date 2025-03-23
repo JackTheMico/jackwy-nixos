@@ -104,6 +104,7 @@ in {
         shellAbbrs = {
           gco = "git checkout";
           npu = "nix-prefetch-url";
+          dnv = "devenv";
           ls = "eza";
           ll = "eza -l";
           la = "eza -l -a";
