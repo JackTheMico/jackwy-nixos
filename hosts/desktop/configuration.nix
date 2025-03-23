@@ -73,6 +73,7 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     EDITOR = "vim";
+    TERMINAL = "wezterm";
   };
   services = {
     # Enable the X11 windowing system.

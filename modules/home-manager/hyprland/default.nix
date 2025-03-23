@@ -27,7 +27,7 @@ in {
         "$fileManager" = "nautilus";
         "$menu" = "rofi -show drun";
         "$mod" = "SUPER";
-        exec-once = ["waybar" "clash-verge" "clipse -listen" "fcitx5" "swww-daemon"];
+        exec-once = ["waybar" "clash-verge" "clipse -listen" "fcitx5" "swww-daemon" "pypr"];
         plugin = {
           hyprsplit = {
             num_workspaces = 10;
@@ -89,6 +89,7 @@ in {
             "$mod, R, exec, $menu"
             "$mod, P, pseudo, # dwindle"
             "$mod, J, togglesplit, # dwindle"
+            "$mod, T, exec, pypr toggle wezterm"
             # Move focus with mod + arrow keys
             "$mod, left, movefocus, l"
             "$mod, right, movefocus, r"
@@ -205,7 +206,7 @@ in {
         };
       };
     };
-    home.packages = with pkgs; [waybar hyprshot swww hypridle libnotify];
+    home.packages = with pkgs; [waybar hyprshot swww hypridle libnotify pyprland];
     programs = {
       hyprlock.enable = true;
       waybar = {enable = true;};
@@ -220,13 +221,19 @@ in {
       };
     };
     services.hypridle.enable = true;
-    xdg.configFile."hypr/hypridle.conf".source = ./hypridle.conf;
-    xdg.configFile."hypr/mocha.conf".source = "${inputs.catppuccin-hyprland}/themes/mocha.conf";
-    xdg.configFile."hypr/hyprlock.conf".source = "${inputs.catppuccin-hyprlock}/hyprlock.conf";
-    xdg.configFile."waybar/mocha.css".source = "${inputs.catppuccin-waybar}/themes/mocha.css";
-    xdg.configFile."waybar/config.jsonc".source =
-      config.lib.file.mkOutOfStoreSymlink ./config.jsonc;
-    xdg.configFile."waybar/style.css".source =
-      config.lib.file.mkOutOfStoreSymlink ./style.css;
+    xdg = {
+      configFile = {
+        "hypr/hypridle.conf".source = ./hypridle.conf;
+        "hypr/pyprland.toml".source =
+          config.lib.file.mkOutOfStoreSymlink ./pyprland.toml;
+        "hypr/mocha.conf".source = "${inputs.catppuccin-hyprland}/themes/mocha.conf";
+        "hypr/hyprlock.conf".source = "${inputs.catppuccin-hyprlock}/hyprlock.conf";
+        "waybar/mocha.css".source = "${inputs.catppuccin-waybar}/themes/mocha.css";
+        "waybar/config.jsonc".source =
+          config.lib.file.mkOutOfStoreSymlink ./config.jsonc;
+        "waybar/style.css".source =
+          config.lib.file.mkOutOfStoreSymlink ./style.css;
+      };
+    };
   };
 }
