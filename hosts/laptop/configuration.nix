@@ -122,11 +122,17 @@
       enableSSHSupport = true;
     };
   };
-  # Enable Flakes and Nix settings
-  nix.settings = {experimental-features = ["nix-command" "flakes"];};
-
-  # Storage Optimization
-  nix.optimise.automatic = true;
+  nix = {
+    # Enable Flakes and Nix settings
+    settings = {experimental-features = ["nix-command" "flakes"];};
+    extraOptions = ''
+      trusted-users = root jackwenyoung
+      extra-substituters = https://devenv.cachix.org
+      extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+    '';
+    # Storage Optimization
+    optimise.automatic = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

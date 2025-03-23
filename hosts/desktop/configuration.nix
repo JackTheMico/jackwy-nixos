@@ -138,9 +138,17 @@
       enableSSHSupport = true;
     };
   };
+  nix = {
+    settings.experimental-features = ["nix-command" "flakes"];
+    optimise.automatic = true;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nix.optimise.automatic = true;
+    # For devenv
+    extraOptions = ''
+      trusted-users = root jackwenyoung
+      extra-substituters = https://devenv.cachix.org
+      extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
+    '';
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
