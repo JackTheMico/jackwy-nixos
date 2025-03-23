@@ -4,12 +4,8 @@ local tabline = wezterm.plugin.require("https://github.com/michaelbrusegard/tabl
 tabline.setup()
 -- smart workspace swither
 local workspace_switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
--- -- modal.wezterm
--- local modal = wezterm.plugin.require("https://github.com/MLFlexer/modal.wezterm")
--- -- Change right status text when entering/leaving mode
--- wezterm.on("update-right-status", function(window, _)
---   modal.set_right_status(window)
--- end)
+-- wez-pain-control
+local wezpaincontrol = wezterm.plugin.require("https://github.com/sei40kr/wez-pain-control")
 -- resurrect.wezterm
 local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
 
@@ -53,7 +49,7 @@ local config = {
     },
   },
   font = wezterm.font("Maple Mono NF", { weight = "Bold", italic = false }),
-  font_size = 16,
+  font_size = 18,
   hide_tab_bar_if_only_one_tab = true,
   use_fancy_tab_bar = true,
   tab_bar_at_bottom = false,
@@ -71,8 +67,10 @@ local config = {
     bottom = 0,
   },
 }
--- modal.apply_to_config(config)
 workspace_switcher.apply_to_config(config)
+wezpaincontrol.apply_to_config(config, {
+  pane_resize = 5,
+})
 
 -- resurrect.wezterm
 resurrect.state_manager.periodic_save({
