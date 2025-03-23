@@ -1,8 +1,18 @@
 [pyprland]
-plugins = ["scratchpads"]
+plugins = ["scratchpads", "wallpapers"]
 
 [scratchpads.wezterm]
 command = "wezterm start --class term_top"
 animation = "fromTop"
 size = "80% 45%"
 class = "term_top"
+
+[wallpapers]
+unique = true # set a different wallpaper for each screen
+path = "~/Pictures/wallpapers/"
+interval = 60 # change every hour
+extensions = ["jpg", "jpeg", "png", "gif"]
+recurse = true
+## Using swww
+command = 'swww img --transition-type any "[file]"'
+clear_command = "swww clear"
