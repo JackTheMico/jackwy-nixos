@@ -11,11 +11,12 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
-  boot.extraModulePackages = [];
+  boot = {
+    initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-intel"];
+    extraModulePackages = [];
+  };
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/38496773-558a-4986-90ee-efa1b92c1f24";
@@ -44,9 +45,20 @@
   hardware = {
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
-    graphics.enable = true;
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
     nvidia = {
+      prime = {
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
+        nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:6:0:0";
+      };
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       open = false;
       powerManagement.enable = true;

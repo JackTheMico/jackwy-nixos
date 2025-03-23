@@ -31,6 +31,7 @@
     outputs.homeManagerModules.hack
     outputs.homeManagerModules.cmdline
     outputs.homeManagerModules.gui
+    outputs.homeManagerModules.gaming
     outputs.homeManagerModules.scrcpy
 
     # Or modules exported from other flakes (such as nix-colors):
@@ -42,6 +43,7 @@
   jackwyHMMods = {
     cmdline.enable = true;
     gui.enable = true;
+    gaming.enable = true;
     scrcpy.enable = true;
     gh.enable = true;
     sql.enable = true;

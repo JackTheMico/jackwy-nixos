@@ -19,4 +19,5 @@ in {
   cmdline = import ./cmdline.nix args;
   gui = import ./gui.nix args;
   scrcpy = import ./scrcpy.nix args;
+  gaming = import ./gaming.nix args;
 }

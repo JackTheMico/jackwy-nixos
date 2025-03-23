@@ -20,6 +20,7 @@
     outputs.nixosModules.hack
     outputs.nixosModules.basic
     outputs.nixosModules.nutstore
+    outputs.nixosModules.gaming
   ];
   jackwySystemMods = {
     fontProfiles.enable = true;
@@ -27,6 +28,7 @@
     vcs.enable = true;
     basic.enable = true;
     nutstore.enable = true;
+    gaming.enable = true;
     hack.enable = false;
   };
 

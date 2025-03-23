@@ -16,4 +16,5 @@ in {
   hack = import ./hack.nix args;
   basic = import ./basic.nix args;
   nutstore = import ./nutstore.nix args;
+  gaming = import ./gaming.nix args;
 }

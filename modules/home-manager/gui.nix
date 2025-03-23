@@ -16,7 +16,6 @@ in {
       discord
       keepassxc
       spotify
-      steam
       qq
       wechat-uos
       zoom-us
