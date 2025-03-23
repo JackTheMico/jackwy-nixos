@@ -39,13 +39,18 @@ in {
         "user" # 允许非 root 用户挂载
         "x-systemd.automount" # 启用 systemd 自动挂载
         "_netdev" # 声明依赖网络，确保网络就绪后才挂载:cite[8]
+        "rw" # read and write
       ];
     };
     # 挂载点目录权限配置
     system.activationScripts.setupNutstore = ''
       mkdir -p /mnt/nutstore
-      chown ${userName}:users /mnt/nutstore
       chmod 755 /mnt/nutstore
     '';
+    # system.activationScripts.setupNutstore = ''
+    #   mkdir -p /mnt/nutstore
+    #   chown -R ${userName}:users /mnt/nutstore
+    #   chmod 755 /mnt/nutstore
+    # '';
   };
 }
