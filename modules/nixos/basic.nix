@@ -30,11 +30,13 @@ in {
         fd
         kitty
         just
+        # NOTE: An example for python
         # (python312.withPackages (p:
         #   with p; [
         #     pip
         #     pynacl
         #   ]))
+        mpv
         sops
         vscode
         wget

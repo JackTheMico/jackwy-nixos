@@ -95,6 +95,11 @@ in {
             "$mod, right, movefocus, r"
             "$mod, up, movefocus, u"
             "$mod, down, movefocus, d"
+            # Resize windows
+            "$mod SHIFT, left, resizeactive, -10 0"
+            "$mod SHIFT, right, resizeactive, 10 0"
+            "$mod SHIFT, up, resizeactive, 0 -10"
+            "$mod SHIFT, down, resizeactive, 0 10"
             # Scroll through existing workspaces with mod + scroll
             "$mod, mouse_down, workspace, e+1"
             "$mod, mouse_up, workspace, e-1"
