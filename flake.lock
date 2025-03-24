@@ -150,11 +150,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1742726926,
-        "narHash": "sha256-Jgv4bdOj1Rgqi0pBeW6/2sppoVBcc1xlPYSh8t18I20=",
+        "lastModified": 1742796605,
+        "narHash": "sha256-gS4SROx8u3J7TVlNwaaY0soCVSGVaBKrno6KVZLWmmA=",
         "ref": "refs/heads/main",
-        "rev": "c09723ba260f7a7ad5fbb0046c6fe7280e5d4052",
-        "revCount": 17,
+        "rev": "de8d573713c2a0540544c3af896e12330b9bf9e4",
+        "revCount": 18,
         "type": "git",
         "url": "ssh://git@github.com/JackTheMico/jackwy-nvf.git"
       },
@@ -257,11 +257,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1742422364,
-        "narHash": "sha256-mNqIplmEohk5jRkqYqG19GA8MbQ/D4gQSK0Mu4LvfRQ=",
+        "lastModified": 1742669843,
+        "narHash": "sha256-G5n+FOXLXcRx+3hCJ6Rt6ZQyF1zqQ0DL0sWAMn2Nk0w=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a84ebe20c6bc2ecbcfb000a50776219f48d134cc",
+        "rev": "1e5b653dff12029333a6546c11e108ede13052eb",
         "type": "github"
       },
       "original": {
@@ -273,11 +273,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1742512142,
-        "narHash": "sha256-8XfURTDxOm6+33swQJu/hx6xw1Tznl8vJJN5HwVqckg=",
+        "lastModified": 1742751704,
+        "narHash": "sha256-rBfc+H1dDBUQ2mgVITMGBPI1PGuCznf9rcWX/XIULyE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "7105ae3957700a9646cc4b766f5815b23ed0c682",
+        "rev": "f0946fa5f1fb876a9dc2e1850d9d3a4e3f914092",
         "type": "github"
       },
       "original": {
@@ -312,11 +312,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1742698203,
-        "narHash": "sha256-aDZYU8w7mRTCeK+6s7HOJw3V/LHkIfj2me169ZtpVIQ=",
+        "lastModified": 1742820071,
+        "narHash": "sha256-CegaleaI2cXDa6V6FfSfL/CWrWlTS3AAnjQUXmwXhGI=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "37d4dccaebc470005f1a414994a967bdfc94c0f8",
+        "rev": "220e5f36c7c5d9df1dcec81348dc7b122ae7ec0c",
         "type": "github"
       },
       "original": {
@@ -361,7 +361,9 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "yazi-flavors": "yazi-flavors",
+        "yazi-plugin-searchjump": "yazi-plugin-searchjump"
       }
     },
     "rust-overlay": {
@@ -455,6 +457,38 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "yazi-flavors": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1742023253,
+        "narHash": "sha256-nhIhCMBqr4VSzesplQRF6Ik55b3Ljae0dN+TYbzQb5s=",
+        "owner": "yazi-rs",
+        "repo": "flavors",
+        "rev": "68326b4ca4b5b66da3d4a4cce3050e5e950aade5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yazi-rs",
+        "repo": "flavors",
+        "type": "github"
+      }
+    },
+    "yazi-plugin-searchjump": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739108223,
+        "narHash": "sha256-JgHxItaE/C7xdc7fe35KfLZGJKiIvurKizPH9cOb3Z0=",
+        "owner": "DreamMaoMao",
+        "repo": "searchjump.yazi",
+        "rev": "df6ee75772d4095c740572fa4adb06a27857c721",
+        "type": "github"
+      },
+      "original": {
+        "owner": "DreamMaoMao",
+        "repo": "searchjump.yazi",
         "type": "github"
       }
     }

@@ -16,7 +16,7 @@ in {
   qutebrowser = import ./qutebrowser.nix args;
   sql = import ./sql args;
   hack = import ./hack.nix args;
-  cmdline = import ./cmdline.nix args;
+  cmdline = import ./cmdline args;
   gui = import ./gui.nix args;
   scrcpy = import ./scrcpy.nix args;
   gaming = import ./gaming.nix args;

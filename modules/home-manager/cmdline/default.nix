@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 with lib; let
@@ -26,6 +27,7 @@ in {
       gh
       ghostty
       lazygit
+      jq # JSON preview in yazi
       navi # Great cmd help tool
       nvd # Nix/NixOS package version diff tool
       nushell
@@ -86,6 +88,16 @@ in {
             git config user.name "Jack Wenyoung"
             git config user.signKey "A30DF874D95E6029"
           '';
+          y = ''
+            function y
+            	set tmp (mktemp -t "yazi-cwd.XXXXXX")
+            	yazi $argv --cwd-file="$tmp"
+            	if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+            		builtin cd -- "$cwd"
+            	end
+            	rm -f -- "$tmp"
+            end
+          '';
         };
         plugins = [
           {
@@ -123,6 +135,28 @@ in {
         enableBashIntegration = true;
         enableFishIntegration = true;
         enableNushellIntegration = true;
+        flavors = {
+          dracula = "${inputs.yazi-flavors}/dracula.yazi";
+          catppuccin-latte = "${inputs.yazi-flavors}/catppuccin-latte.yazi";
+        };
+        theme = {
+          flavors = {
+            light = "catppuccin-latte";
+            dark = "dracula";
+          };
+        };
+        plugins = {
+          searchjump = "${inputs.yazi-plugin-searchjump}";
+        };
+        initLua = ./yaziInit.lua;
+        keymap = {
+          manager.prepend_keymap = [
+            {
+              run = "plugin searchjump -- autocd";
+              on = ["i"];
+            }
+          ];
+        };
       };
       zoxide = {
         enable = true;

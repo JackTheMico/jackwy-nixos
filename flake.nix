@@ -33,6 +33,15 @@
       url = "git+ssh://git@github.com/JackTheMico/jackwy-nvf.git";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Yazi Flavors
+    yazi-flavors = {
+      url = "github:yazi-rs/flavors";
+      flake = false;
+    };
+    yazi-plugin-searchjump = {
+      url = "github:DreamMaoMao/searchjump.yazi";
+      flake = false;
+    };
 
     # nixCats
     # nixCats.url = "github:BirdeeHub/nixCats-nvim";
