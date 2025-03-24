@@ -38,9 +38,9 @@
       url = "github:yazi-rs/flavors";
       flake = false;
     };
-    yazi-plugin-searchjump = {
-      url = "github:DreamMaoMao/searchjump.yazi";
-      flake = false;
+    nix-yazi-plugins = {
+      url = "github:lordkekz/nix-yazi-plugins?ref=yazi-v0.2.5";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # nixCats

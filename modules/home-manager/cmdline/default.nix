@@ -28,12 +28,13 @@ in {
       ghostty
       lazygit
       jq # JSON preview in yazi
+      yazi
+      rich-cli # yazi rich-preview requires
       navi # Great cmd help tool
       nvd # Nix/NixOS package version diff tool
       nushell
       neovide
       starship
-      yazi
       thefuck
       zoxide
     ];
@@ -139,23 +140,54 @@ in {
           dracula = "${inputs.yazi-flavors}/dracula.yazi";
           catppuccin-latte = "${inputs.yazi-flavors}/catppuccin-latte.yazi";
         };
-        theme = {
-          flavors = {
-            light = "catppuccin-latte";
-            dark = "dracula";
-          };
+        plugins = with pkgs.unstable.yaziPlugins; {
+          inherit starship;
+          # inherit rich-preview;
+          inherit jump-to-char;
         };
-        plugins = {
-          searchjump = "${inputs.yazi-plugin-searchjump}";
-        };
-        initLua = ./yaziInit.lua;
+        initLua = ''
+          require("starship"):setup()
+        '';
         keymap = {
           manager.prepend_keymap = [
             {
-              run = "plugin searchjump -- autocd";
+              run = "plugin jump-to-char";
               on = ["i"];
+              desc = "Jump to char";
             }
           ];
+        };
+        # settings = {
+        #   plugin = {
+        #     prepend_previewers = [
+        #       {
+        #         name = "*.csv";
+        #         run = "rich-preview";
+        #       } # for csv files
+        #       {
+        #         name = "*.md";
+        #         run = "rich-preview";
+        #       } # for markdown (.md) files
+        #       {
+        #         name = "*.rst";
+        #         run = "rich-preview";
+        #       } # for restructured text (.rst) files
+        #       {
+        #         name = "*.ipynb";
+        #         run = "rich-preview";
+        #       } # for jupyter notebooks (.ipynb)
+        #       {
+        #         name = "*.json";
+        #         run = "rich-preview";
+        #       } # for json (.json) files
+        #     ];
+        #   };
+        # };
+        theme = {
+          flavor = {
+            light = "catppuccin-latte";
+            dark = "dracula";
+          };
         };
       };
       zoxide = {
