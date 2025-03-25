@@ -107,14 +107,6 @@
   # Enable home-manager and git
   programs = {
     home-manager.enable = true;
-    firefox.profiles.${userName}.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-      swithyomega
-      tampermonkey
-      darkreader
-      tree-style-tab
-      immersive-translate
-      #NOTE: Install Toby manually.
-    ];
     git = {
       enable = true;
       userName = gitName;
