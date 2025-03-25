@@ -1,3 +1,8 @@
+require("starship"):setup()
+require("full-border"):setup {
+  type = ui.Border.ROUNDED,
+}
+
 require("searchjump"):setup({
   unmatch_fg = "#b2a496",
   match_str_fg = "#000000",

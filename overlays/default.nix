@@ -28,7 +28,8 @@
       inherit (final) system;
       config.allowUnfree = true;
       overlays = [
-        inputs.nix-yazi-plugins.overlays.default
+        # An example to apply an overlay
+        # inputs.nix-yazi-plugins.overlays.default
       ];
     };
   };

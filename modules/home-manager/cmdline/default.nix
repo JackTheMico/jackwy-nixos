@@ -13,31 +13,32 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      bat
-      bash
-      chezmoi
-      delta
-      devenv
-      fzf
-      fish
-      fastfetch
-      eza
-      grc # I forget what this for.
-      gh
-      ghostty
-      lazygit
-      jq # JSON preview in yazi
-      yazi
-      rich-cli # yazi rich-preview requires
-      navi # Great cmd help tool
-      nvd # Nix/NixOS package version diff tool
-      nushell
-      neovide
-      starship
-      thefuck
-      zoxide
-    ];
+    home.packages = with pkgs;
+      [
+        bat
+        bash
+        chezmoi
+        delta
+        devenv
+        fzf
+        fish
+        fastfetch
+        eza
+        grc # I forget what this for.
+        gh
+        ghostty
+        lazygit
+        jq # JSON preview in yazi
+        rich-cli # yazi rich-preview requires
+        navi # Great cmd help tool
+        nvd # Nix/NixOS package version diff tool
+        nushell
+        neovide
+        starship
+        thefuck
+        zoxide
+      ]
+      ++ [pkgs.unstable.yazi];
     programs = {
       bash = {
         enable = true;
@@ -131,7 +132,11 @@ in {
           czi = "chezmoi";
         };
       };
+      # NOTE: Commands needs to be run manually
+      # ya pack -a DreamMaoMao/searchjump AnirudhG07/rich-preview Rolv-Apneseth/starship yazi-rs/plugins:full-border
+      # ya pack -a ndtoan96/ouch
       yazi = {
+        package = pkgs.unstable.yazi;
         enable = true;
         enableBashIntegration = true;
         enableFishIntegration = true;
@@ -140,49 +145,72 @@ in {
           dracula = "${inputs.yazi-flavors}/dracula.yazi";
           catppuccin-latte = "${inputs.yazi-flavors}/catppuccin-latte.yazi";
         };
-        plugins = with pkgs.unstable.yaziPlugins; {
-          inherit starship;
-          # inherit rich-preview;
-          inherit jump-to-char;
-        };
-        initLua = ''
-          require("starship"):setup()
-        '';
+        initLua = ./yaziInit.lua;
         keymap = {
           manager.prepend_keymap = [
             {
-              run = "plugin jump-to-char";
+              run = "plugin searchjump -- autocd";
               on = ["i"];
-              desc = "Jump to char";
+              desc = "Searchjump mode";
+            }
+            {
+              run = "plugin ouch --args=zip";
+              on = ["C"];
+              desc = "Compress with ouch";
             }
           ];
         };
-        # settings = {
-        #   plugin = {
-        #     prepend_previewers = [
-        #       {
-        #         name = "*.csv";
-        #         run = "rich-preview";
-        #       } # for csv files
-        #       {
-        #         name = "*.md";
-        #         run = "rich-preview";
-        #       } # for markdown (.md) files
-        #       {
-        #         name = "*.rst";
-        #         run = "rich-preview";
-        #       } # for restructured text (.rst) files
-        #       {
-        #         name = "*.ipynb";
-        #         run = "rich-preview";
-        #       } # for jupyter notebooks (.ipynb)
-        #       {
-        #         name = "*.json";
-        #         run = "rich-preview";
-        #       } # for json (.json) files
-        #     ];
-        #   };
-        # };
+        settings = {
+          plugin = {
+            prepend_previewers = [
+              # Archive previewer
+              {
+                mime = "application/*zip";
+                run = "ouch";
+              }
+              {
+                mime = "application/x-tar";
+                run = "ouch";
+              }
+              {
+                mime = "application/x-bzip2";
+                run = "ouch";
+              }
+              {
+                mime = "application/x-7z-compressed";
+                run = "ouch";
+              }
+              {
+                mime = "application/x-rar";
+                run = "ouch";
+              }
+              {
+                mime = "application/x-xz";
+                run = "ouch";
+              }
+              {
+                name = "*.csv";
+                run = "rich-preview";
+              } # for csv files
+              {
+                name = "*.md";
+                run = "rich-preview";
+              } # for markdown (.md) files
+              {
+                name = "*.rst";
+                run = "rich-preview";
+              } # for restructured text (.rst) files
+              {
+                name = "*.ipynb";
+                run = "rich-preview";
+              } # for jupyter notebooks (.ipynb)
+              {
+                name = "*.json";
+                run = "rich-preview";
+              } # for json (.json) files
+            ];
+          };
+        };
         theme = {
           flavor = {
             light = "catppuccin-latte";
