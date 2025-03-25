@@ -19,7 +19,6 @@ in {
         bash
         chezmoi
         delta
-        devenv
         fzf
         fish
         fastfetch
@@ -31,14 +30,17 @@ in {
         jq # JSON preview in yazi
         rich-cli # yazi rich-preview requires
         navi # Great cmd help tool
+        nix-search-cli
         nvd # Nix/NixOS package version diff tool
         nushell
         neovide
         starship
         thefuck
         zoxide
+        zip
+        unzip
       ]
-      ++ [pkgs.unstable.yazi];
+      ++ [pkgs.unstable.yazi pkgs.unstable.devenv];
     programs = {
       bash = {
         enable = true;
