@@ -28,6 +28,7 @@ in {
         ghostty
         lazygit
         jq # JSON preview in yazi
+        jupyter
         rich-cli # yazi rich-preview requires
         navi # Great cmd help tool
         nix-search-cli
