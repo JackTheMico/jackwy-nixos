@@ -25,6 +25,7 @@ in {
         eza
         grc # I forget what this for.
         gh
+        gtrash
         ghostty
         lazygit
         jq # JSON preview in yazi
@@ -37,6 +38,7 @@ in {
         neovide
         starship
         thefuck
+        pipx
         zoxide
         zip
         unzip
