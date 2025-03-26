@@ -13,7 +13,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [arion compose2nix lazydocker];
+    environment.systemPackages = with pkgs; [arion compose2nix lazydocker docker-client];
     virtualisation.docker.enable = false;
     virtualisation.podman = {
       enable = true;
