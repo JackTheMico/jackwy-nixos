@@ -83,7 +83,7 @@ in {
             # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
             "$mod, return, exec, $terminal"
             "$mod, Q, killactive"
-            "$mod, M, exit"
+            "$mod SHIFT, M, exit"
             "$mod, E, exec, $fileManager"
             "$mod, F, togglefloating"
             "$mod, R, exec, $menu"
