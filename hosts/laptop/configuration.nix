@@ -2,8 +2,8 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 {
-  config,
-  lib,
+  # config,
+  # lib,
   outputs,
   pkgs,
   userName,
@@ -17,13 +17,19 @@
     outputs.nixosModules.fontProfiles
     outputs.nixosModules.hack
     outputs.nixosModules.basic
+    outputs.nixosModules.nutstore
+    outputs.nixosModules.gaming
+    outputs.nixosModules.firefox
   ];
   jackwySystemMods = {
     fontProfiles.enable = true;
     network.enable = true;
     vcs.enable = true;
     basic.enable = true;
-    hack.enable = true;
+    nutstore.enable = true;
+    firefox.enable = true;
+    hack.enable = false;
+    gaming.enable = false;
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -67,33 +73,59 @@
       };
     };
   };
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    EDITOR = "vim";
+    TERMINAL = "wezterm";
   };
+  services = {
+    # console = {
+    #   font = "Lat2-Terminus16";
+    #   keyMap = "us";
+    #   useXkbConfig = true; # use xkb.options in tty.
+    # };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+    # Enable the X11 windowing system.
+    # services.xserver.enable = true;
+
+    # Enable CUPS to print documents.
+    printing.enable = true;
+
+    # Enable sound.
+    # hardware.pulseaudio.enable = true;
+    # OR
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+    };
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.enable = true;
+
+    # Some programs need SUID wrappers, can be configured further or are
+    # started in user sessions.
+    # programs.mtr.enable = true;
+    # programs.gnupg.agent = {
+    #   enable = true;
+    #   enableSSHSupport = true;
+    # };
+
+    # List services that you want to enable:
+
+    # Enable the OpenSSH daemon.
+    openssh.enable = true;
+
+    # NOTE: https://discourse.nixos.org/t/how-to-automatically-mount-external-hard-drive/15563/2
+    # Try to automatically mount external hard drive
+    devmon.enable = true;
+    gvfs.enable = true;
+    udisks2.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jackwenyoung = {
     isNormalUser = true;
-    extraGroups = ["wheel" "input"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "input" "networkmanager" "davfs2"]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -110,7 +142,6 @@
         extraArgs = "--keep 5 --keep-since 3d";
       };
     };
-    firefox.enable = true;
     uwsm.enable = true;
     hyprland = {
       enable = true;
@@ -133,25 +164,6 @@
     # Storage Optimization
     optimise.automatic = true;
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # NOTE: https://discourse.nixos.org/t/how-to-automatically-mount-external-hard-drive/15563/2
-  # Try to automatically mount external hard drive
-  services.devmon.enable = true;
-  services.gvfs.enable = true;
-  services.udisks2.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
