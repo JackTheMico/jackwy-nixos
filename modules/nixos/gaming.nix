@@ -16,6 +16,7 @@ in {
       steam
       lutris
       gamescope
+      wineWowPackages.waylandFull
     ];
     programs = {
       steam = {
