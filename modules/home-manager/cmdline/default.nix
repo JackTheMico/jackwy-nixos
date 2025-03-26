@@ -43,7 +43,7 @@ in {
         zip
         unzip
       ]
-      ++ [pkgs.unstable.yazi pkgs.unstable.devenv];
+      ++ [pkgs.unstable.yazi pkgs.unstable.devenv pkgs.unstable.lazyjournal];
     programs = {
       bash = {
         enable = true;

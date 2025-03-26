@@ -3,10 +3,11 @@
 {
   inputs,
   system,
+  userName,
   ...
 }: let
   moduleNameSpace = "jackwySystemMods";
-  args = {inherit moduleNameSpace inputs system;};
+  args = {inherit moduleNameSpace inputs system userName;};
 in {
   # List your module files here
   # my-module = import ./my-module.nix;
@@ -18,4 +19,5 @@ in {
   nutstore = import ./nutstore.nix args;
   gaming = import ./gaming.nix args;
   firefox = import ./firefox.nix args;
+  docker = import ./docker.nix args;
 }

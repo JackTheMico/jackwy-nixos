@@ -43,6 +43,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware = {
+    nvidia-container-toolkit.enable = true;
     bluetooth.enable = true;
     bluetooth.powerOnBoot = true;
     graphics = {

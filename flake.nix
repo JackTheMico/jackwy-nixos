@@ -108,7 +108,7 @@
     overlays = import ./overlays {inherit inputs;};
     # Reusable nixos modules you might want to export
     # These are usually stuff you would upstream into nixpkgs
-    nixosModules = import ./modules/nixos {inherit inputs system;};
+    nixosModules = import ./modules/nixos {inherit inputs system userName;};
     # Reusable home-manager modules you might want to export
     # These are usually stuff you would upstream into home-manager
     homeManagerModules = import ./modules/home-manager {inherit inputs system;};

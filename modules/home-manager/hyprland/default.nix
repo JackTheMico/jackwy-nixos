@@ -110,7 +110,7 @@ in {
             "$mod SHIFT, 0, split:movetoworkspace, 10"
             "$mod Alt, 0, split:movetoworkspacesilent, 10"
             # hyprsplit
-            "$mod, D, split:swapactiveworkspaces, current +1"
+            # "$mod, D, split:swapactiveworkspaces, current +1"
             "$mod, G, split:swapactiveworkspaces, current +1"
             # Clipse
             "$mod, V, exec, kitty --class clipse -e clipse"

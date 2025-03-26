@@ -22,6 +22,7 @@
     outputs.nixosModules.nutstore
     outputs.nixosModules.gaming
     outputs.nixosModules.firefox
+    outputs.nixosModules.docker
   ];
   jackwySystemMods = {
     fontProfiles.enable = true;
@@ -31,6 +32,7 @@
     nutstore.enable = true;
     gaming.enable = true;
     firefox.enable = true;
+    docker.enable = true;
     hack.enable = false;
   };
 
