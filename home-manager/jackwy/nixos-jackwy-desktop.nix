@@ -4,11 +4,11 @@
   inputs,
   outputs,
   userName,
-  gitName,
-  gitEmail,
-  lib,
-  config,
-  pkgs,
+  # gitName,
+  # gitEmail,
+  # lib,
+  # config,
+  # pkgs,
   ...
 }: {
   nixpkgs = {
@@ -93,7 +93,6 @@
   #   packageNames = ["ncat" "tcat"];
   # };
 
-  # NOTE: Set your username
   home = {
     username = userName;
     homeDirectory = "/home/${userName}";
@@ -107,33 +106,6 @@
   # Enable home-manager and git
   programs = {
     home-manager.enable = true;
-    git = {
-      enable = true;
-      userName = gitName;
-      userEmail = gitEmail;
-      extraConfig = {
-        http.proxy = "http://127.0.0.1:7897";
-        https.proxy = "http://127.0.0.1:7897";
-        commit.gpgsign = true;
-        user.signingkey = "A30DF874D95E6029";
-      };
-    };
-    jujutsu = {
-      enable = true;
-      settings = {
-        user = {
-          name = gitName;
-          email = gitEmail;
-        };
-        ui = {
-          pager = "delta";
-          editor = "vim";
-          default-command = "log";
-          diff.format = "git";
-          allow-init-native = true;
-        };
-      };
-    };
   };
 
   # Nicely reload system units when changing configs

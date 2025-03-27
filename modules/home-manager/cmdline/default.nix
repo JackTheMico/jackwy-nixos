@@ -3,6 +3,8 @@
   config,
   lib,
   inputs,
+  gitName,
+  gitEmail,
   ...
 }:
 with lib; let
@@ -57,10 +59,49 @@ in {
           fi
         '';
       };
+      btop = {
+        enable = true;
+        settings = {
+          color_theme = "dracula";
+          theme_background = true;
+          truecolor = true;
+          vim_keys = true;
+          rounded_corners = true;
+          proc_tree = true;
+          log_level = "WARNING";
+        };
+      };
       navi = {
         enable = true;
         enableBashIntegration = true;
         enableFishIntegration = true;
+      };
+      git = {
+        enable = true;
+        userName = gitName;
+        userEmail = gitEmail;
+        extraConfig = {
+          http.proxy = "http://127.0.0.1:7897";
+          https.proxy = "http://127.0.0.1:7897";
+          commit.gpgsign = true;
+          user.signingkey = "A30DF874D95E6029";
+        };
+      };
+      jujutsu = {
+        enable = true;
+        settings = {
+          user = {
+            name = gitName;
+            email = gitEmail;
+          };
+          ui = {
+            pager = "delta";
+            editor = "vim";
+            default-command = "log";
+            diff.format = "git";
+            allow-init-native = true;
+          };
+        };
       };
       kitty = {
         enable = true;
@@ -135,6 +176,7 @@ in {
           jjbm = "jj bookmark s -r @- main";
           gpom = "git push -u origin main";
           czi = "chezmoi";
+          ns = "nix-search";
         };
       };
       # NOTE: Commands needs to be run manually

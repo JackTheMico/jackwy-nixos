@@ -4,10 +4,10 @@
   inputs,
   outputs,
   userName,
-  gitName,
-  gitEmail,
-  lib,
-  config,
+  # gitName,
+  # gitEmail,
+  # lib,
+  # config,
   pkgs,
   ...
 }: {
@@ -122,103 +122,6 @@
   # Enable home-manager and git
   programs = {
     home-manager.enable = true;
-    bash = {
-      enable = true;
-      enableCompletion = true;
-      # Enter fish shell
-      initExtra = ''
-        if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-        then
-          shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-          exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-        fi
-      '';
-    };
-    git = {
-      enable = true;
-      userName = gitName;
-      userEmail = gitEmail;
-      extraConfig = {
-        http.proxy = "http://127.0.0.1:7897";
-        https.proxy = "http://127.0.0.1:7897";
-        commit.gpgsign = true;
-        user.signingkey = "A30DF874D95E6029";
-      };
-    };
-    jujutsu = {
-      enable = true;
-      settings = {
-        user = {
-          name = gitName;
-          email = gitEmail;
-        };
-        ui = {
-          pager = "delta";
-          editor = "vim";
-          default-command = "log";
-          diff.format = "git";
-          allow-init-native = true;
-        };
-      };
-    };
-    kitty = {
-      enable = true;
-      font.name = "Hack";
-      settings = {
-        scrollback_lines = 10000;
-        enable_audio_bell = false;
-        update_check_interval = 0;
-      };
-    };
-    starship = {enable = true;};
-    fish = {
-      enable = true;
-      interactiveShellInit = ''
-        starship init fish | source
-        thefuck --alias | source
-        jj util completion fish | source
-        fzf_configure_bindings --processes=\cp
-      '';
-      plugins = [
-        {
-          name = "done";
-          src = pkgs.fishPlugins.done.src;
-        }
-        {
-          name = "grc";
-          src = pkgs.fishPlugins.grc.src;
-        }
-        {
-          name = "fzf-fish";
-          src = pkgs.fishPlugins.fzf-fish.src;
-        }
-      ];
-      shellAbbrs = {
-        gco = "git checkout";
-        npu = "nix-prefetch-url";
-        ls = "eza";
-        ll = "eza -l";
-        la = "eza -l -a";
-        lt = "eza -T";
-        lg = "lazygit";
-        lj = "lazyjj";
-        md = "mkdir";
-        jjbm = "jj bookmark s -r @- main";
-        gpom = "git push -u origin main";
-      };
-    };
-    yazi = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
-    };
-    zoxide = {
-      enable = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
-    };
   };
 
   # Nicely reload system units when changing configs
