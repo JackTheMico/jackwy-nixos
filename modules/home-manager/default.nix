@@ -27,4 +27,5 @@ in {
   gui = import ./gui.nix args;
   scrcpy = import ./scrcpy.nix args;
   gaming = import ./gaming.nix args;
+  redshift = import ./redshift.nix args;
 }

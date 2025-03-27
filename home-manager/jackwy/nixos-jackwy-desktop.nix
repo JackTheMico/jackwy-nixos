@@ -57,6 +57,7 @@
     outputs.homeManagerModules.gui
     outputs.homeManagerModules.gaming
     outputs.homeManagerModules.scrcpy
+    outputs.homeManagerModules.redshift
 
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
@@ -76,6 +77,7 @@
     wezterm.enable = true;
     obsidian.enable = true;
     chromium.enable = true;
+    redshift.enable = true;
     hyprland = {
       enable = true;
       autoEnter = false;
