@@ -129,11 +129,11 @@
         "nvf": "nvf"
       },
       "locked": {
-        "lastModified": 1742796605,
-        "narHash": "sha256-gS4SROx8u3J7TVlNwaaY0soCVSGVaBKrno6KVZLWmmA=",
+        "lastModified": 1743134652,
+        "narHash": "sha256-2x/xL2IaeqP9wDMD6gNojh8cT2fyd6p95OXL1VzYjbI=",
         "ref": "refs/heads/main",
-        "rev": "de8d573713c2a0540544c3af896e12330b9bf9e4",
-        "revCount": 18,
+        "rev": "4e1da40372881cd83733c28c7b647633cefc0055",
+        "revCount": 19,
         "type": "git",
         "url": "ssh://git@github.com/JackTheMico/jackwy-nvf.git"
       },
