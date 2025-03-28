@@ -39,6 +39,7 @@ in {
         nushell
         neovide
         starship
+        translate-shell
         thefuck
         pipx
         zoxide
@@ -165,6 +166,8 @@ in {
           gco = "git checkout";
           npu = "nix-prefetch-url";
           dnv = "devenv";
+          transe = "trans -x 127.0.0.1:7897 en:zh ";
+          transz = "trans -x 127.0.0.1:7897 zh:en ";
           ls = "eza";
           ll = "eza -l";
           la = "eza -l -a";
