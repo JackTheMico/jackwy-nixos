@@ -67,7 +67,7 @@ in {
           truecolor = true;
           vim_keys = true;
           rounded_corners = true;
-          proc_tree = true;
+          proc_tree = false;
           log_level = "WARNING";
         };
       };

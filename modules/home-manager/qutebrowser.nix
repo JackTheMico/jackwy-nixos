@@ -64,6 +64,7 @@ in {
         nvfo = "https://notashelf.github.io/nvf/options.html";
         wqb = "https://platform.worldquantbrain.com/simulate";
         xzm = "https://www.xiezuocat.com/";
+        yhdm = "https://www.yinhuadm.vip/";
         mt = "https://metaso.cn";
       };
       settings = {
